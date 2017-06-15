@@ -1,0 +1,382 @@
+﻿@model MVCWebUIComponent.Models.CreateAnalyzerModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<h2>
+    Resources.Resources.TitleCreateAnalyzer</h2>*@
+<style type="text/css">
+    .droptrue
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        float: left;
+        margin-right: 10px;
+        background: #eee;
+        padding: 5px;
+        width: 143px;
+        float: left;
+        display: block;
+        border-right: #000 1px solid;
+        border-bottom: #000 1px solid;
+        line-height: 16px;
+        color: #000;
+    }
+    .droptrue li
+    {
+        margin: 5px;
+        padding: 5px;
+        font-size: 1.2em;
+        width: 120px;
+        float: left;
+        height: auto;
+    }
+    .IdeaName
+    {
+        background: gray;
+        text-align: center;
+        color: #fff;
+    }
+    #columns input
+    {
+        margin: 5px;
+        padding: 5px;
+        font-size: 1.2em;
+        width: 120px;
+    }
+    .analyzerColumn
+    {
+        border: none;
+        width: 60px;
+        display: none;
+    }
+    .analyzerColumns
+    {
+        height: 200px;
+    }
+    .analyzerColumns li
+    {
+        list-style-type: none;
+        float: left;
+        line-height: 15px;
+        position: relative;
+        padding: 3px 5px 3px 18px;
+        margin: 3px 0 3px 5px;
+    }
+    .query
+    {
+        float: left;
+        width: 78%;
+    }
+    .operations
+    {
+        width: 100%;
+        float: right;
+        zoom: 1;
+        display: inline;
+        ertical-align: top;
+    }
+    .operations ul
+    {
+        border: 1px solid #CCC;
+        margin: 0;
+        padding: 0;
+        cursor: text;
+        overflow: hidden;
+        height: 1%;
+        position: relative;
+        width: 100%;
+    }
+    .operations-value
+    {
+        -webkit-background-clip: padding-box;
+        background: #F9EAE1;
+        color: #333;
+        border: 1px solid #F77825;
+        line-height: 13px;
+        padding: 3px 5px 3px 18px;
+        margin: 3px 0 3px 5px;
+        position: relative;
+        cursor: default;
+        list-style-type: none;
+        width: auto;
+        float: left;
+        list-style: none;
+    }
+</style>
+<script type="text/javascript">
+    function deleteColumn(obj) {
+        $(obj).remove();
+        if ($(".analyzerColumns").find("li").length == 0) {
+            $("<li class='placeholder'>Add your items here</li>").appendTo($(".analyzerColumns"));
+        }
+    }
+    function getquery(obj) {
+        var str = "";
+        obj.find('input').each(function () {
+            str += this.value + " ";
+        });
+        return str;
+    }
+    function checkForm() {
+        var selectvalue = $("#selectValue");
+        var joinvalue = $("#joinValue");
+        var wherevalue = $("#whereValue");
+        $("#Analyzer\\.SelectQuery").val(getquery(selectvalue));
+        $("#Analyzer\\.JoinQuery").val(getquery(joinvalue));
+        $("#Analyzer\\.WhereQuery").val(getquery(wherevalue));
+        if ($("#Analyzer\\.SelectQuery").val != null && $("#Analyzer\\.JoinQuery").val != null) {
+            return true;
+        } else { return false; }
+    }
+    $(function () {
+        $("#createAnalyzer").submit(function () {
+            return checkForm();
+        });
+        $("ul.droptrue li").draggable({
+            appendTo: "body",
+            helper: "clone"
+        });
+        $("ul.droptrue").sortable({
+            connectWith: "ul"
+        });
+        $(".analyzerColumns").droppable({
+            activeClass: "ui-state-default",
+            hoverClass: "ui-state-hover",
+            accept: ":not(.ui-sortable-helper)",
+            drop: function (event, ui) {
+                $(this).find(".placeholder").remove();
+                if (ui.draggable.parent().attr("title") != null) {
+                    if ($(this).parent().attr("id") == "joinValue" && ui.draggable.text() == ui.draggable.parent().attr("title")) {
+                        $("<li>" + ui.draggable.parent().attr("title") + "<input type=\"text\" value='[" + ui.draggable.parent().attr("title") + "]' class=\"analyzerColumn\"\></li>").appendTo(this);
+                    } else {
+                        $("<li>" + ui.draggable.parent().attr("title") + "." + ui.draggable.text() + "<input type=\"text\" value=" + ui.draggable.parent().attr("title") + "." + ui.draggable.text() + " class=\"analyzerColumn\"\></li>").appendTo(this);
+                    }
+                }
+                else if (ui.draggable.find("input:first").val() != null) {
+                    if (ui.draggable.find("input:first").val() == "") {
+                        alert("Can not be empty!");
+                        return;
+                    }
+                    $("<li>" + ui.draggable.find("input:first").val() + "<input type=\"text\" value=" + ui.draggable.find("input:first").val() + " class=\"analyzerColumn\"\></li>").appendTo(this);
+                }
+                else {
+                    $("<li>" + ui.draggable.text() + "<input type=\"text\" value='" + ui.draggable.text() + "' class=\"analyzerColumn\"\></li>").appendTo(this);
+                }
+            }
+        }).sortable({
+            items: "li:not(.placeholder)",
+            sort: function () {
+                $(this).removeClass("ui-state-default");
+            }
+        });
+        $(".query li").live("dblclick", function () {
+            deleteColumn(this);
+        });
+    });
+</script>
+<div style="float: left; margin: 5px; width: 100%">
+    <fieldset>
+        <legend>@Resources.Resources.ALinkEntityList</legend>
+        @foreach (var item in Model.IdeaList)
+        {<div>
+            <ul class="droptrue" title="@item.IdeaName">
+                <li class="IdeaName">@item.IdeaName</li>
+                <li>RowId</li>
+                @foreach (var value in item.Columns)
+                {
+                    <li  id="@value.ColumnId">@value.ColumnName</li>
+                }
+            </ul>
+        </div>
+        }
+    </fieldset>
+</div>
+<div style="float: left; margin: 5px; width: 100%">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "createAnalyzer", id = "createAnalyzer" }))
+    {
+        <div>
+            <fieldset id="analyzer">
+                <legend>@Resources.Resources.Analyzer</legend>
+                <div style="float: left">
+                    <label for="Analyzer.AnalyzerName">
+                        @Resources.Resources.AnalyzerName</label>
+                    <input type="text" id="Analyzer.AnalyzerName" name="Analyzer.AnalyzerName" value="@Model.Analyzer.AnalyzerName" />
+                    <input type="hidden" name="Analyzer.AnalyzerId" id="Analyzer.AnalyzerId" value="@Model.Analyzer.AnalyzerId"/>
+                </div>
+                <div style="float: right">
+                    <input type="submit" value="@Resources.Resources.btnCreate" />
+                </div>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset id="select" style="width: 43%; float: left; margin: 5px">
+                <legend>Select</legend>
+                <div class="query" id="selectValue">
+                    <ul class="analyzerColumns">
+                        @if (Model.Analyzer.AnalyzerId == 0)
+                        {
+                            <li class="placeholder">Add your items here</li>}
+
+                        else
+                        {
+                            foreach (var item in Model.Analyzer.SelectList)
+                            {
+                            <li>@item
+                                <input type="text" value="@item" class="analyzerColumn" /></li>
+                            }
+                        }
+                    </ul>
+                    <input type="hidden" name="Analyzer.SelectQuery" id="Analyzer.SelectQuery" />
+                </div>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset id="join" style="width: 43%; float: left; margin: 5px">
+                <legend>Join</legend>
+                <div class="query" id="joinValue">
+                    <ul class="analyzerColumns">
+                        @if (Model.Analyzer.AnalyzerId == 0)
+                        {
+                            <li class="placeholder">Add your items here</li>}
+
+                        else
+                        {
+                            foreach (var item in Model.Analyzer.JoinList)
+                            {
+                            <li>@item
+                                <input type="text" value="@item" class="analyzerColumn" /></li>}
+                        }
+                    </ul>
+                </div>
+                <input type="hidden" name="Analyzer.JoinQuery" id="Analyzer.JoinQuery" />
+            </fieldset>
+        </div>
+        <div>
+            <fieldset id="where" style="width: 43%; float: left; margin: 5px">
+                <legend>Where</legend>
+                <div class="query" id="whereValue">
+                    <ul class="analyzerColumns">
+                        @if (Model.Analyzer.AnalyzerId == 0)
+                        {
+                            <li class="placeholder">Add your items here</li>}
+
+                        else
+                        {
+                            foreach (var item in Model.Analyzer.WhereList)
+                            {
+                            <li>@item
+                                <input type="text" value="@item" class="analyzerColumn" /></li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <input type="hidden" name="Analyzer.WhereQuery" id="Analyzer.WhereQuery" />
+            </fieldset>
+            <fieldset id="operation" style="width: 43%; float: left; margin: 5px">
+                <legend>@Resources.Resources.Operators</legend>
+                <div class="operations">
+                    <ul class="droptrue">
+                        <li class="operations-value">
+                            <div>
+                                (</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                )</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                ,</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                =</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                &gt</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                &lt</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                &gt=</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                &lt=</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                [</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                ]</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                on</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                <input style="width: 90%" /></div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                SUM</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                AVG</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                MAX</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                MIN</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                COUNT</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                GROUP BY</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                DISTINCT</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                left join</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                right join</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                join</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                inner join</div>
+                        </li>
+                        <li class="operations-value">
+                            <div>
+                                out join</div>
+                        </li>
+                    </ul>
+                </div>
+            </fieldset>
+        </div>
+    }
+</div>

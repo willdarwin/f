@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ProgressbarModel" nillable="true" type="ProgressbarModel" />
+  <xs:complexType name="ProgressbarModel">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="LoadingTimeInterval" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IncrementTimeInterval" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MenuModel" nillable="true" type="MenuModel" />
+  <xs:complexType name="MenuModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="MenuItemList" type="ArrayOfMenuItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfMenuItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MenuItem" nillable="true" type="MenuItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MenuItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Item" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Link" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="State" type="xs:boolean" use="required" />
+    <xs:attribute name="NodeLevel" type="xs:int" use="required" />
+    <xs:attribute name="ParentNode" type="xs:string" />
+  </xs:complexType>
+  <xs:element name="MenuItem" nillable="true" type="MenuItem" />
+  <xs:element name="ChartModel" nillable="true" type="ChartModel" />
+  <xs:complexType name="ChartModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Labels" type="ArrayOfString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Values" type="ArrayOfString1" />
+    </xs:sequence>
+    <xs:attribute name="ChartTitle" type="xs:string" />
+    <xs:attribute name="ChartType" type="xs:string" />
+    <xs:attribute name="ValueCount" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Label" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GridModel" nillable="true" type="GridModel" />
+  <xs:complexType name="GridModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ColumnNames" type="ArrayOfString2" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ColumnModels" type="ArrayOfArrayOfKeyValuePairOfStringObject" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RowList" type="ArrayOfInt" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MyJsonReader" type="JsonReader" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Table" type="DataSource" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Analyser" type="Analyser" />
+    </xs:sequence>
+    <xs:attribute name="SourceType" type="GridSourceType" use="required" />
+    <xs:attribute name="Theme" type="xs:string" />
+    <xs:attribute name="Url" type="xs:string" />
+    <xs:attribute name="TableId" type="xs:int" use="required" />
+    <xs:attribute name="Pager" type="xs:string" />
+    <xs:attribute name="Caption" type="xs:string" />
+    <xs:attribute name="SortName" type="xs:string" />
+    <xs:attribute name="SortOrder" type="GridSortOrder" use="required" />
+    <xs:attribute name="EditUrl" type="xs:string" />
+    <xs:attribute name="AddUrl" type="xs:string" />
+    <xs:attribute name="DeleteUrl" type="xs:string" />
+    <xs:attribute name="MultiSelect" type="xs:boolean" use="required" />
+    <xs:attribute name="ViewRecords" type="xs:boolean" use="required" />
+    <xs:attribute name="Width" type="xs:int" use="required" />
+    <xs:attribute name="RowNum" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString2">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ColumnName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfArrayOfKeyValuePairOfStringObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ColumnModel" nillable="true" type="ArrayOfKeyValuePairOfStringObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfKeyValuePairOfStringObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValuePairOfStringObject" nillable="true" type="KeyValuePairOfStringObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="KeyValuePairOfStringObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfInt">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Row" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="JsonReader">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Root" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Page" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Total" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Id" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Cell" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Records" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DataSource">
+    <xs:attribute name="Label" type="xs:string" />
+    <xs:attribute name="Value" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Analyser">
+    <xs:attribute name="AppID" type="xs:int" use="required" />
+    <xs:attribute name="ID" type="xs:int" use="required" />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="GridSourceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="xml" />
+      <xs:enumeration value="json" />
+      <xs:enumeration value="array" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="GridSortOrder">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="asc" />
+      <xs:enumeration value="desc" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ArrayOfKeyValuePairOfStringObject" nillable="true" type="ArrayOfKeyValuePairOfStringObject" />
+  <xs:element name="JsonReader" nillable="true" type="JsonReader" />
+  <xs:element name="GridSourceType" type="GridSourceType" />
+  <xs:element name="GridSortOrder" type="GridSortOrder" />
+  <xs:element name="MyJsonResult" nillable="true" type="MyJsonResult" />
+  <xs:complexType name="MyJsonResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalPages" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Page" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalRecords" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Rows" type="ArrayOfGridRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfGridRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GridRow" nillable="true" type="GridRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GridRow">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Cell" type="ArrayOfString3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString3">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GridRow" nillable="true" type="GridRow" />
+  <xs:element name="GridFunction" nillable="true" type="GridFunction" />
+  <xs:complexType name="GridFunction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TextModel" nillable="true" type="TextModel" />
+  <xs:complexType name="TextModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Text" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="Column" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:element name="TabsModel" nillable="true" type="TabsModel" />
+  <xs:complexType name="TabsModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TabsGroups" type="ArrayOfTabsGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfTabsGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Tab" nillable="true" type="TabsGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TabsGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Header" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Body" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TabsGroup" nillable="true" type="TabsGroup" />
+  <xs:element name="DatePickerModel" nillable="true" type="DatePickerModel" />
+  <xs:complexType name="DatePickerModel">
+    <xs:attribute name="Id" type="xs:string" />
+    <xs:attribute name="Value" type="xs:string" />
+  </xs:complexType>
+  <xs:element name="Analyser" nillable="true" type="Analyser" />
+  <xs:element name="DialogModel" nillable="true" type="DialogModel" />
+  <xs:complexType name="DialogModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Content" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="DialogType" type="DialogButtonType" use="required" />
+    <xs:attribute name="Title" type="xs:string" />
+    <xs:attribute name="IsModal" type="xs:boolean" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="DialogButtonType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OKCancel" />
+      <xs:enumeration value="YesNo" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DialogButtonType" type="DialogButtonType" />
+  <xs:element name="IdeaModel" nillable="true" type="IdeaModel" />
+  <xs:complexType name="IdeaModel">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="IdeaId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IdeaName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IdeaDescription" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UserId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Columns" type="ArrayOfColumnInIdeaModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfColumnInIdeaModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ColumnInIdeaModel" nillable="true" type="ColumnInIdeaModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ColumnInIdeaModel">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ColumnId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ColumnName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MyDataTypeId" type="DataTypeId" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReferedIdeaId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferedIdeaIdName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferedColumnIds" type="ArrayOfString3" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferedColumnNames" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IdeaId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DataTypeId">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Money" />
+      <xs:enumeration value="Number" />
+      <xs:enumeration value="Datetime" />
+      <xs:enumeration value="LongText" />
+      <xs:enumeration value="ShortText" />
+      <xs:enumeration value="Entity" />
+      <xs:enumeration value="Status" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ColumnInIdeaModel" nillable="true" type="ColumnInIdeaModel" />
+  <xs:element name="IdeaDetailModel" nillable="true" type="IdeaDetailModel" />
+  <xs:complexType name="IdeaDetailModel">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="IdeaId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IdeaName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IdeaDescription" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UserId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Rows" type="ArrayOfRowModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Columns" type="ArrayOfColumnInIdeaModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfRowModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RowModel" nillable="true" type="RowModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RowModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Columns" type="ArrayOfColumnInIdeaModel1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Values" type="ArrayOfAnyType" />
+    </xs:sequence>
+    <xs:attribute name="RowId" type="xs:int" use="required" />
+    <xs:attribute name="IdeaId" type="xs:int" use="required" />
+    <xs:attribute name="Version" type="xs:int" use="required" />
+    <xs:attribute name="IsDeleted" type="xs:boolean" use="required" />
+    <xs:attribute name="UserId" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfColumnInIdeaModel1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Column" nillable="true" type="ColumnInIdeaModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAnyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" nillable="true" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataTypeId" type="DataTypeId" />
+  <xs:element name="StringValue" nillable="true" type="StringValue" />
+  <xs:complexType name="StringValue">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Attribute">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Value" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Attribute" abstract="true" />
+  <xs:element name="UserInfo" nillable="true" type="UserInfo" />
+  <xs:complexType name="UserInfo">
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Id" type="xs:long" use="required" />
+  </xs:complexType>
+  <xs:element name="StyleType" type="StyleType" />
+  <xs:simpleType name="StyleType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Classic" />
+      <xs:enumeration value="Default" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Header" nillable="true" type="Header" />
+  <xs:complexType name="Header">
+    <xs:attribute name="Height" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:element name="DateRangeModel" nillable="true" type="DateRangeModel" />
+  <xs:complexType name="DateRangeModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="From" type="DatePickerModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="To" type="DatePickerModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FPXAppManager" nillable="true" type="FPXAppManager" />
+  <xs:complexType name="FPXAppManager" />
+  <xs:element name="ButtonModel" nillable="true" type="ButtonModel" />
+  <xs:complexType name="ButtonModel">
+    <xs:attribute name="Text" type="xs:string" />
+  </xs:complexType>
+  <xs:element name="LocalizedDisplayName" nillable="true" type="LocalizedDisplayName" />
+  <xs:complexType name="LocalizedDisplayName">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DisplayNameAttribute">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ResourceType" type="Type" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ResourceName" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DisplayNameAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Attribute" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Type" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="MemberInfo" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MemberInfo" abstract="true" />
+  <xs:element name="LabelModel" nillable="true" type="LabelModel" />
+  <xs:complexType name="LabelModel">
+    <xs:attribute name="Text" type="xs:string" />
+  </xs:complexType>
+  <xs:element name="TemplateType" type="TemplateType" />
+  <xs:simpleType name="TemplateType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DefaultT" />
+      <xs:enumeration value="Classic" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserApp" nillable="true" type="UserApp" />
+  <xs:complexType name="UserApp">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="User" type="UserInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DataSources" type="ArrayOfDataSource" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Analysers" type="ArrayOfAnalyser" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Pages" type="ArrayOfPage" />
+    </xs:sequence>
+    <xs:attribute name="Description" type="xs:string" />
+    <xs:attribute name="Status" type="xs:string" />
+    <xs:attribute name="DefaultPage" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDataSource">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DataSource" nillable="true" type="DataSource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAnalyser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Analyser" nillable="true" type="Analyser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Page" nillable="true" type="Page" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Page">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Header" type="Header" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MenuList" type="ArrayOfMenuModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="GridList" type="ArrayOfGridModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InputList" type="ArrayOfInputModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LabelList" type="ArrayOfLabelModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TextModelList" type="ArrayOfTextModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChartList" type="ArrayOfChartModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ButtonList" type="ArrayOfButtonModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Footer" type="Footer" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Id" type="xs:long" use="required" />
+    <xs:attribute name="Template" type="TemplateType" use="required" />
+    <xs:attribute name="Index" type="xs:int" use="required" />
+    <xs:attribute name="IsDefault" type="xs:boolean" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfMenuModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Menu" nillable="true" type="MenuModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfGridModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Grid" nillable="true" type="GridModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfInputModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Input" nillable="true" type="InputModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InputModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Label" type="LabelModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Text" type="TextModel" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Button" type="ButtonModel" />
+    </xs:sequence>
+    <xs:attribute name="Row" type="xs:int" use="required" />
+    <xs:attribute name="Column" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLabelModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Label" nillable="true" type="LabelModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfTextModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Text" nillable="true" type="TextModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfChartModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Chart" nillable="true" type="ChartModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfButtonModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Button" nillable="true" type="ButtonModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Footer">
+    <xs:attribute name="Height" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:element name="Page" nillable="true" type="Page" />
+  <xs:element name="RowModel" nillable="true" type="RowModel" />
+  <xs:element name="InputModel" nillable="true" type="InputModel" />
+  <xs:element name="AccordionModel" nillable="true" type="AccordionModel" />
+  <xs:complexType name="AccordionModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccordionGroups" type="ArrayOfAccordionGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAccordionGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Accordion" nillable="true" type="AccordionGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccordionGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Header" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Body" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccordionGroup" nillable="true" type="AccordionGroup" />
+  <xs:element name="Footer" nillable="true" type="Footer" />
+  <xs:element name="DataSource" nillable="true" type="DataSource" />
+</xs:schema>

@@ -1,0 +1,10 @@
+﻿@model MVCWebUIComponent.Models.LeftMenuItem[]
+@foreach (MVCWebUIComponent.Models.LeftMenuItem leftMenuItem in Model)
+{ 
+@*<li>@Html.ActionLink(leftMenuItem.Value, "Gym", new { IdeaName = leftMenuItem.Value })</li>*@
+    <li>@Html.ActionLink(leftMenuItem.Value, "Nova", new { pageIndex = leftMenuItem.Id, userAppName = leftMenuItem.FileName })</li>
+}
+@*<li>@Html.ActionLink(Model[0].Value, "Gym", new { Id = Model[0].Value })</li>
+<li>@Html.ActionLink(Model[1].Value, "Gym", new { Id = Model[1].Value })</li>
+<li>@Html.ActionLink(Model[2].Value, "Gym", new { Id = Model[2].Value })</li>
+<li>@Html.ActionLink(Model[2].Value, "Gym", new { Id = Model[2].Value })</li>*@

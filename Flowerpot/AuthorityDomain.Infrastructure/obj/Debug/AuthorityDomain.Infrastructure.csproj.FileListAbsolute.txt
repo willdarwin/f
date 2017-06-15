@@ -1,0 +1,13 @@
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\bin\Debug\AuthorityDomain.Infrastructure.dll
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\bin\Debug\AuthorityDomain.Infrastructure.pdb
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\bin\Debug\AuthorityDomain.Model.dll
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\bin\Debug\AutoMapper.dll
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\bin\Debug\UtilityComponent.dll
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\bin\Debug\Microsoft.Practices.Unity.dll
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\bin\Debug\AuthorityDomain.Model.pdb
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\bin\Debug\UtilityComponent.pdb
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\obj\Debug\AuthorityDomain.Infrastructure.csprojResolveAssemblyReference.cache
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\obj\Debug\AuthorityDomain.Infrastructure.dll
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Infrastructure\obj\Debug\AuthorityDomain.Infrastructure.pdb

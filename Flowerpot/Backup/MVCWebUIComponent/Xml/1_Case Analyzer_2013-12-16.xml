@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserApp Description="VINST CASES" Status="Active" DefaultPage="ConsumptionRecord" FileName="1_Case Analyzer_2013-12-16.xml" Template="Template1">
+  <User Name="admin" Id="1" />
+  <Entities>
+    <Entity EntityId ="1" EntityName="Team"/>
+    <Entity EntityId ="2" EntityName="CaseType"/>
+    <Entity EntityId ="3" EntityName="Impact"/>
+    <Entity EntityId ="4" EntityName="Urgency"/>
+    <Entity EntityId ="7" EntityName="Cases"/>
+  </Entities>
+  <Analyzers>
+    <Analyzer AnalyzerId ="1" AnalyzerName="Requset in OCT"/>
+    <Analyzer AnalyzerId ="2" AnalyzerName="Case from in OCT"/>
+    <Analyzer AnalyzerId ="3" AnalyzerName="Impact in OCT"/>
+    <Analyzer AnalyzerId ="4" AnalyzerName="Urgency in OCT"/>
+    <Analyzer AnalyzerId ="5" AnalyzerName="Type in OCT"/>
+    <Analyzer AnalyzerId ="6" AnalyzerName="Daily count in OCT"/>
+    <Analyzer AnalyzerId ="7" AnalyzerName="Top 1 case in OCT"/>
+    <Analyzer AnalyzerId ="8" AnalyzerName="The 2nd case in OCT"/>
+    <Analyzer AnalyzerId ="9" AnalyzerName="The 3rd case in OCT"/>
+    <Analyzer AnalyzerId ="10" AnalyzerName="The 4th case in OCT"/>
+  </Analyzers>
+  <LeftMenu>
+    <LeftMenuItem Value="Team" Url="/App/Teams" Id="1" FileName="1_Case Analyzer_2013-12-16.xml"/>
+    <LeftMenuItem Value="CaseType" Url="/App/CaseType" Id="2" FileName="1_Case Analyzer_2013-12-16.xml"/>
+    <LeftMenuItem Value="Impact" Url="/App/Cases" Id="3" FileName="1_Case Analyzer_2013-12-16.xml"/>
+    <LeftMenuItem Value="Urgency" Url="/App/Cases" Id="4" FileName="1_Case Analyzer_2013-12-16.xml"/>
+    <LeftMenuItem Value="Cases" Url="/App/Cases" Id="5" FileName="1_Case Analyzer_2013-12-16.xml"/>
+    <LeftMenuItem Value="Statistics" Url="/App/Statistics" Id="6" FileName="1_Case Analyzer_2013-12-16.xml"/>
+    <LeftMenuItem Value="TopCases" Url="/App/TopCases" Id="7" FileName="1_Case Analyzer_2013-12-16.xml"/>
+  </LeftMenu>
+  <Pages>
+    <Page Name="Team" Id="1" Template="Classic" Index="1" IsDefault="true">
+      <GridList>
+        <Grid EntityId="1" EntityName="Team" Theme="base"/>
+      </GridList>
+    </Page>
+    <Page Name="Type" Id="2" Template="Classic" Index="2" IsDefault="false">
+      <GridList>
+        <Grid EntityId="2" EntityName="CaseType" Theme="base"/>
+      </GridList>
+    </Page>
+    <Page Name="Type" Id="3" Template="Classic" Index="3" IsDefault="false">
+      <GridList>
+        <Grid EntityId="3" EntityName="Impact" Theme="base"/>
+      </GridList>
+    </Page>
+    <Page Name="Type" Id="4" Template="Classic" Index="4" IsDefault="false">
+      <GridList>
+        <Grid EntityId="4" EntityName="Urgency" Theme="base"/>
+      </GridList>
+    </Page>
+    <Page Name="Cases" Id="5" Template="Classic" Index="5" IsDefault="false">
+      <GridList>
+        <Grid EntityId="7" EntityName="Cases" Theme="base"/>
+      </GridList>
+    </Page>
+    <Page Name="Statistics" Id="6" Template="Classic" Index="6" IsDefault="false">
+      <ChartList>
+        <Chart Id ="1" ChartTitle="Requset in OCT" ChartType="bar" AnalyzerId ="1" AnalyzerName="Requset in OCT" />
+        <Chart Id ="2" ChartTitle="Case from in OCT" ChartType="bar" AnalyzerId ="2" AnalyzerName="Case from in OCT" />
+        <Chart Id ="3" ChartTitle="Impact in OCT" ChartType="bar" AnalyzerId ="3" AnalyzerName="Impact in OCT" />
+        <Chart Id ="4" ChartTitle="Urgency in OCT" ChartType="bar" AnalyzerId ="4" AnalyzerName="Urgency in OCT" />
+        <Chart Id ="5" ChartTitle="Type in OCT" ChartType="bar" AnalyzerId ="5" AnalyzerName="Type in OCT"/>
+        <Chart Id ="6" ChartTitle="Daily count in OCT" ChartType="bar" AnalyzerId ="6" AnalyzerName="Daily count in OCT"/>
+      </ChartList>
+    </Page>
+    <Page Name="TopCases" Id="7" Template="Classic" Index="6" IsDefault="false">
+      <ChartList>
+        <Chart Id ="7" ChartTitle="Add role to Partner" ChartType="bar" AnalyzerId ="7" AnalyzerName="Top 1 case in OCT"/>
+        <Chart Id ="8" ChartTitle="User login portal failed" ChartType="bar" AnalyzerId ="8" AnalyzerName="The 2nd case in OCT"/>
+        <Chart Id ="9" ChartTitle="User missing link in Portal" ChartType="bar" AnalyzerId ="9" AnalyzerName="The 3rd case in OCT"/>
+        <Chart Id ="10" ChartTitle="User login application failed" ChartType="bar" AnalyzerId ="10" AnalyzerName="The 4th case in OCT"/>
+      </ChartList>
+    </Page>
+  </Pages>
+</UserApp>

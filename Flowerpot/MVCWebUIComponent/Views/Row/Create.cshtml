@@ -1,0 +1,19 @@
+﻿@model MVCWebUIComponent.Models.RowModel
+@{
+    ViewBag.Title = "Index";
+}
+<h2>
+    Index</h2>
+@using (Html.BeginForm())
+{
+    <input type="text" id="IdeaID" name="IdeaID" />
+    <br />
+    <input type="text" id="ColumnList[0].ColumnName" name="ColumnList[0].ColumnName" />
+    <input type="text" id="Values[0]" name="Values[0]" />
+    <br />
+    <input type="text" id="ColumnList[1].ColumnName" name="ColumnList[1].ColumnName" />
+    <input type="text" id="Values[1]" name="Values[1]" />
+    <p>
+        <input type="submit" value="Create" />
+    </p>
+}

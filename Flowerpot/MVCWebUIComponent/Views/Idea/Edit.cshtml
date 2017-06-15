@@ -1,0 +1,251 @@
+﻿@model MVCWebUIComponent.Models.IdeaModel
+@{
+    ViewBag.Title = @Resources.Resources.TitleEditEntity;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    @Resources.Resources.TitleEditEntity</h2>
+<style type="text/css">
+    table td
+    {
+        border: 2px solid #668B8B;
+        padding: 5px 5px 5px 5px;
+    }
+    
+    table tr
+    {
+        color: #000000;
+        background-color: #E8EEF4;
+    }
+    
+    table
+    {
+        margin: 5px 0 0 10px;
+    }
+</style>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui.dropdownchecklist-1.4-min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+
+    function addRow() {
+        var vTb = $("#tblColumns");
+        var vTr = $("#tblColumns tr:first");
+        var vNum = $("#tblColumns tr").size();
+        var vTr_new = $('<tr></tr>').attr({ "id": "trDataRow" + vNum }).appendTo(vTb);
+        var tDClone_1 = vTr.children().eq(0).clone(true);
+        var tDClone_2 = vTr.children().eq(1).clone(true);
+        var tDClone_3 = vTr.children().eq(2).clone(true);
+        var tDClone_4 = vTr.children().eq(3).clone(true);
+        tDClone_2.find('input').each(function () {
+            this.name = this.name.replace('[0]', '[' + vNum + ']');
+            this.id = this.id.replace('[0]', '[' + vNum + ']');
+        });
+        tDClone_4.find('select').each(function () {
+            this.name = this.name.replace('[0]', '[' + vNum + ']');
+            this.id = this.id.replace('[0]', '[' + vNum + ']');
+        });
+        tDClone_1.appendTo(vTr_new);
+        tDClone_2.appendTo(vTr_new);
+        tDClone_3.appendTo(vTr_new);
+        tDClone_4.appendTo(vTr_new);
+    }
+
+    function deleteRow() {
+        var vTb = $("#tblColumns");
+        var vNum = $("#tblColumns tr").size() - 1;
+        vNum = $("#tblColumns tr").size() - 1;
+        if (vNum < 1) {
+            alert('last Row!');
+            return;
+        }
+        else {
+            $("#tblColumns #trDataRow" + vNum + "").remove();
+        }
+    }
+
+    function getIdeaList(currentId) {
+        var url = '(@Url.Action("GetIdeaList", "Idea"))';
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: "application/json;utf-8",
+            url: "http://localhost:3638/Idea/GetIdeaList",
+            success: function (data) {
+                var ddl = $("select[id='Columns[" + currentId + "].RefIdeaType']");
+                ddl.empty();
+                $.each(data, function (index, item) {
+                    ddl.append($('<option/>', {
+                        value: item.IdeaId,
+                        text: item.IdeaName
+                    }));
+                });
+            }
+        });
+    }
+
+    function getColumnsList(ideaId, currentId) {
+        var url = '(@Url.Action("GetColumnsList", "Idea"))';
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: "application/json;utf-8",
+            url: "http://localhost:3638/Idea/GetColumnsList?ideaId=" + ideaId,
+            success: function (data) {
+                var ddl = $("select[id='Columns[" + currentId + "].RefIdeaTagName']");
+                ddl.empty();
+                ddl.dropdownchecklist('destroy');
+
+                $.each(data, function (index, item) {
+                    ddl.append($('<option/>', {
+                        value: item.ColumnId,
+                        text: item.ColumnName
+                    }));
+                });
+                ddl.dropdownchecklist({ maxDropHeight: 150 });
+
+                ddl.change(function () {
+                    selectedValues = $(this).val();
+                    ddl.attr({ name: "Columns[" + currentId + "].ReferedColumnIds" });
+                    if ((selectedValues != null) && (selectedValues.length > 3)) {
+                        $("input:checkbox[value='" + selectedValues[3] + "']").attr("checked", false);
+                        alert("Less than three columns can be selected as reference name!");
+                    }
+                });
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('select[class="DataTypeId"]').change(function () {
+            var currentRowId = $(this).parent().parent().attr("id");
+            var currentId = currentRowId.substr(9);
+            var value = $(this).val();
+            if (value == "Entity") {
+                var ddl_TD = $(this).parent().parent();
+                $('<th></th>').attr({ id: "tdlabelIdeaType" + currentId }).text("@Resources.Resources.ReferencedEntity").appendTo(ddl_TD);
+                $('<td></td>').attr({ id: "tdddlIdeaType" + currentId }).append($('<select></select>').attr({ id: "Columns[" + currentId + "].RefIdeaType", name: "Columns[" + currentId + "].ReferedIdeaId", title: "ReferedIdeaId" })).appendTo(ddl_TD);
+                $('<th></th>').attr({ id: "tdlabelColumns" + currentId }).text("@Resources.Resources.ReferencedAttribute").appendTo(ddl_TD);
+                $('<td></td>').attr({ id: "tdddlColumns" + currentId }).append($('<select></select>').attr({ id: "Columns[" + currentId + "].RefIdeaTagName" })).appendTo(ddl_TD);
+
+                $('select[title="ReferedIdeaId"]').change(function () {
+                    var currentRowId = $(this).parent().parent().attr("id");
+                    var currentId = currentRowId.substr(9);
+                    var ideaId = $(this).val();
+                    getColumnsList(ideaId, currentId);
+                });
+
+                getIdeaList(currentId);
+                var ideaId = $("select[id='Columns[" + currentId + "].RefIdeaType']").val();
+                getColumnsList(ideaId, currentId);
+            }
+            else {
+                $("#tdlabelIdeaType" + currentId + "").remove();
+                $("#tdddlIdeaType" + currentId + "").remove();
+                $("#tdlabelColumns" + currentId + "").remove();
+                $("#tdddlColumns" + currentId + "").remove();
+            }
+        });
+    });
+</script>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>@Resources.Resources.Entity</legend>
+        <table id="tblIdea">
+            <tr>
+                @Html.HiddenFor(model => model.IdeaId)
+                <td>
+                    @Resources.Resources.EntityName
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.IdeaName)
+                    @Html.ValidationMessageFor(model => model.IdeaName)
+                </td>
+                <td>
+                    @Resources.Resources.EntityDescription
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.IdeaDescription)
+                    @Html.ValidationMessageFor(model => model.IdeaDescription)
+                </td>
+                <td>
+                    <input type="button" onclick="addRow()" id="btnAdd" value=@Resources.Resources.btnAdd />
+                    <input type="button" onclick="deleteRow()" id="btnDelete" value=@Resources.Resources.btnDelete />
+                </td>
+                @Html.HiddenFor(model => model.UserId)
+            </tr>
+        </table>
+        @if (Model.Columns != null)
+        {
+            <table width="100%">
+                <tr>
+                    <td>
+                        @Resources.Resources.AttributeName
+                    </td>
+                    <td>
+                        @Resources.Resources.AttributeType
+                    </td>
+                    <td>
+                        @Resources.Resources.ReferencedEntity
+                    </td>
+                    <td>
+                        @Resources.Resources.ReferencedAttribute
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                @foreach (var item in Model.Columns)
+                {
+                    <tr>
+                        <td>
+                            @item.ColumnName
+                        </td>
+                        <td>
+                            @MVCWebUIComponent.Models.StringEnum.GetStringValue(item.MyDataTypeId)
+                        </td>
+                        <td>
+                            @item.ReferedIdeaIdName
+                        </td>
+                        <td>
+                            @item.ReferedColumnNames
+                        </td>
+                        <td>
+                            @Html.ActionLink(@Resources.Resources.ALinkEdit, "EditColumn", new { id = item.ColumnId })
+                            |
+                            @Html.ActionLink(@Resources.Resources.ALinkDelete, "DeleteColumn", new { id = item.ColumnId })
+                        </td>
+                    </tr>
+                }
+            </table>  
+        }
+        else
+        {
+            <p>@Resources.Resources.NoColumns</p>
+        }
+        <table id="tblColumns">
+            <tr id="trDataRow0">
+                <td>
+                    @Resources.Resources.AttributeName
+                </td>
+                <td>
+                    <input type="text" name="Columns[0].ColumnName" id="Columns[0].ColumnName" />
+                </td>
+                <td>
+                    @Resources.Resources.AttributeType
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Columns[0].MyDataTypeId, new SelectList(Enum.GetValues(typeof(MVCWebUIComponent.Models.DataTypeId))), new { @id = "Columns[0].DataTypeId", @class = "DataTypeId" })
+                </td>
+            </tr>
+        </table>
+        <p>
+            <input type="submit" value=@Resources.Resources.btnSave />
+        </p>
+    </fieldset>
+    
+    <div>
+        @Html.ActionLink(@Resources.Resources.ALinkBackEntityList, "Index", new { Id = Model.UserId })
+    </div>
+
+}

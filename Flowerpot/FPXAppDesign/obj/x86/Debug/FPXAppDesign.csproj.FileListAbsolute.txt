@@ -1,0 +1,8 @@
+D:\Codeplex\flowerport\Flowerpot\FPXAppDesign\bin\Debug\FPXAppDesign.dll
+D:\Codeplex\flowerport\Flowerpot\FPXAppDesign\bin\Debug\FPXAppDesign.pdb
+D:\Codeplex\flowerport\Flowerpot\FPXAppDesign\bin\Debug\AutoMapper.dll
+D:\Codeplex\flowerport\Flowerpot\FPXAppDesign\bin\Debug\FPXApplicationInterface.dll
+D:\Codeplex\flowerport\Flowerpot\FPXAppDesign\bin\Debug\FPXApplicationInterface.pdb
+D:\Codeplex\flowerport\Flowerpot\FPXAppDesign\obj\x86\Debug\FPXAppDesign.csprojResolveAssemblyReference.cache
+D:\Codeplex\flowerport\Flowerpot\FPXAppDesign\obj\x86\Debug\FPXAppDesign.dll
+D:\Codeplex\flowerport\Flowerpot\FPXAppDesign\obj\x86\Debug\FPXAppDesign.pdb

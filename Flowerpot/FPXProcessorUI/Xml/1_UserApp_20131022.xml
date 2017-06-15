@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserApp Description="Description1" Status="Status1" DefaultPage="DefaultPage1">
+  <User Name="Name1" Id="1" />
+  <LeftMenu>
+    <LeftMenuItem Value="New Member"/>
+    <LeftMenuItem Value="Daily Record"/>
+    <LeftMenuItem Value="Statistics"/>
+  </LeftMenu>
+  <DataSources>
+    <DataSource Label="Label1" Value="Value1" />
+    <DataSource Label="Label2" Value="Value2" />
+    <DataSource Label="Label3" Value="Value3" />
+  </DataSources>
+  <Analysers>
+    <Analyser AppID="1" ID="1" Name="Name1" IdeaID="1"/>
+    <Analyser AppID="-2147483647" ID="-2147483647" Name="Name2" IdeaID="2"/>
+    <Analyser AppID="2147483647" ID="2147483647" Name="Name3" IdeaID="3"/>
+  </Analysers>
+  <Pages>
+    <Page Name="Name1" Id="1" Template="DefaultT" Index="1" IsDefault="true" />
+    <Page Name="Name2" Id="-9223372036854775807" Template="Classic" Index="-2147483647" IsDefault="false">
+      <Header Height="1" />
+      <MenuList>
+        <Menu>
+          <MenuItemList>
+            <MenuItem Id="Id1" State="true" NodeLevel="1" ParentNode="ParentNode1" />
+            <MenuItem Id="Id2" State="false" NodeLevel="-2147483647" ParentNode="ParentNode2">
+              <Item>Item1</Item>
+              <Link>Link1</Link>
+            </MenuItem>
+            <MenuItem Id="Id3" State="true" NodeLevel="2147483647" ParentNode="ParentNode3" />
+          </MenuItemList>
+        </Menu>
+      </MenuList>
+      <GridList>
+        <Grid SourceType="xml" Theme="Theme1" Url="Url1" TableId="1" Pager="Pager1" Caption="Caption1" SortName="SortName1" SortOrder="asc" EditUrl="EditUrl1" AddUrl="AddUrl1" DeleteUrl="DeleteUrl1" MultiSelect="true" ViewRecords="true" Width="1" RowNum="1" />
+        <Grid SourceType="json" Theme="Theme2" Url="Url2" TableId="-2147483647" Pager="Pager2" Caption="Caption2" SortName="SortName2" SortOrder="desc" EditUrl="EditUrl2" AddUrl="AddUrl2" DeleteUrl="DeleteUrl2" MultiSelect="false" ViewRecords="false" Width="-2147483647" RowNum="-2147483647">
+          <ColumnNames>
+            <ColumnName />
+            <ColumnName>ColumnName1</ColumnName>
+            <ColumnName />
+          </ColumnNames>
+          <ColumnModels>
+            <ColumnModel />
+            <ColumnModel>
+              <KeyValuePairOfStringObject />
+              <KeyValuePairOfStringObject>
+                <Key>Key1</Key>
+                <Value>anyType</Value>
+              </KeyValuePairOfStringObject>
+              <KeyValuePairOfStringObject />
+            </ColumnModel>
+            <ColumnModel />
+          </ColumnModels>
+          <RowList>
+            <Row>1</Row>
+            <Row>-2147483647</Row>
+            <Row>2147483647</Row>
+          </RowList>
+          <MyJsonReader>
+            <Root>Root1</Root>
+            <Page>Page1</Page>
+            <Total>Total1</Total>
+            <Id>Id1</Id>
+            <Cell>Cell1</Cell>
+            <Records>Records1</Records>
+          </MyJsonReader>
+          <Table Label="Label1" Value="Value1" />
+          <Analyser AppID="1" ID="1" Name="Name1" />
+        </Grid>
+        <Grid SourceType="array" Theme="Theme3" Url="Url3" TableId="2147483647" Pager="Pager3" Caption="Caption3" SortName="SortName3" SortOrder="asc" EditUrl="EditUrl3" AddUrl="AddUrl3" DeleteUrl="DeleteUrl3" MultiSelect="true" ViewRecords="true" Width="2147483647" RowNum="2147483647" />
+      </GridList>
+      <InputList>
+        <Input Row="1" Column="1" />
+        <Input Row="-2147483647" Column="-2147483647">
+          <Label Text="Text1" />
+          <Text Column="1">
+            <Text>Text1</Text>
+          </Text>
+          <Button Text="Text1" />
+        </Input>
+        <Input Row="2147483647" Column="2147483647" />
+      </InputList>
+      <LabelList>
+        <Label Text="Text1" />
+        <Label Text="Text2" />
+        <Label Text="Text3" />
+      </LabelList>
+      <TextModelList>
+        <Text Column="1" />
+        <Text Column="-2147483647">
+          <Text>Text1</Text>
+        </Text>
+        <Text Column="2147483647" />
+      </TextModelList>
+      <ChartList>
+        <Chart ChartTitle="ChartFromXml" ChartType="bar" ValueCount="6">
+          <Labels>
+            <Label>R</Label>
+            <Label>S</Label>
+            <Label>C</Label>
+            <Label>W</Label>
+            <Label>SL</Label>
+            <Label>P</Label>
+          </Labels>
+          <Values>
+            <Value>27</Value>
+            <Value>13</Value>
+            <Value>26</Value>
+            <Value>7</Value>
+            <Value>15</Value>
+            <Value>12</Value>
+          </Values>
+        </Chart>
+      </ChartList>
+      <ButtonList>
+        <Button Text="Text1" />
+        <Button Text="Text2" />
+        <Button Text="Text3" />
+      </ButtonList>
+      <Footer Height="1" />
+    </Page>
+    <Page Name="Name3" Id="9223372036854775807" Template="DefaultT" Index="2147483647" IsDefault="true" />
+  </Pages>
+</UserApp>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FPXAppManager" nillable="true" type="FPXAppManager" />
+  <xs:complexType name="FPXAppManager" />
+  <xs:element name="UserInfo" nillable="true" type="UserInfo" />
+  <xs:complexType name="UserInfo">
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Id" type="xs:long" use="required" />
+  </xs:complexType>
+  <xs:element name="Panel" nillable="true" type="Panel" />
+  <xs:complexType name="Panel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Navigator" type="Navigator" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Grid" type="Grid" />
+    </xs:sequence>
+    <xs:attribute name="Height" type="xs:int" use="required" />
+    <xs:attribute name="Width" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Navigator">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Table" type="DataTable" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Analyser" type="Analyser" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Id" type="xs:long" use="required" />
+    <xs:attribute name="Text" type="xs:string" />
+    <xs:attribute name="XAxis" type="xs:int" use="required" />
+    <xs:attribute name="YAxis" type="xs:int" use="required" />
+    <xs:attribute name="Style" type="StyleType" use="required" />
+  </xs:complexType>
+  <xs:complexType name="DataTable">
+    <xs:attribute name="AppID" type="xs:int" use="required" />
+    <xs:attribute name="ID" type="xs:int" use="required" />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Analyser">
+    <xs:attribute name="AppID" type="xs:int" use="required" />
+    <xs:attribute name="ID" type="xs:int" use="required" />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="StyleType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Classic" />
+      <xs:enumeration value="Default" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Grid">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Table" type="DataTable" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Analyser" type="Analyser" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Id" type="xs:long" use="required" />
+    <xs:attribute name="Text" type="xs:string" />
+    <xs:attribute name="XAxis" type="xs:int" use="required" />
+    <xs:attribute name="YAxis" type="xs:int" use="required" />
+    <xs:attribute name="Style" type="StyleType" use="required" />
+  </xs:complexType>
+  <xs:element name="Page" nillable="true" type="Page" />
+  <xs:complexType name="Page">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Header" type="Header" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Body" type="Body" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Footer" type="Footer" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Id" type="xs:long" use="required" />
+    <xs:attribute name="Template" type="TemplateType" use="required" />
+    <xs:attribute name="Index" type="xs:int" use="required" />
+    <xs:attribute name="IsDefault" type="xs:boolean" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Header">
+    <xs:attribute name="Height" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Body">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Panel" type="Panel" />
+    </xs:sequence>
+    <xs:attribute name="Height" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Footer">
+    <xs:attribute name="Height" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="TemplateType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DefaultT" />
+      <xs:enumeration value="Classic" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TemplateType" type="TemplateType" />
+  <xs:element name="Grid" nillable="true" type="Grid" />
+  <xs:element name="Body" nillable="true" type="Body" />
+  <xs:element name="UserApp" nillable="true" type="UserApp" />
+  <xs:complexType name="UserApp">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="User" type="UserInfo" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DataTable" type="DataTable" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Analyser" type="Analyser" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Page" type="Page" />
+    </xs:sequence>
+    <xs:attribute name="Description" type="xs:string" />
+    <xs:attribute name="Status" type="xs:string" />
+    <xs:attribute name="DefaultPage" type="xs:string" />
+  </xs:complexType>
+  <xs:element name="StyleType" type="StyleType" />
+  <xs:element name="Footer" nillable="true" type="Footer" />
+  <xs:element name="Analyser" nillable="true" type="Analyser" />
+  <xs:element name="DataTable" nillable="true" type="DataTable" />
+  <xs:element name="Header" nillable="true" type="Header" />
+  <xs:element name="Navigator" nillable="true" type="Navigator" />
+  <xs:element name="ComponentCollection" nillable="true" type="ComponentCollection" />
+  <xs:complexType name="ComponentCollection" />
+</xs:schema>

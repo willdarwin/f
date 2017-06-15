@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Body" nillable="true" type="Body" />
+  <xs:complexType name="Body">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Panels" type="PanelCollection" />
+    </xs:sequence>
+    <xs:attribute name="Height" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="PanelCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Panels" type="Panel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Panel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Components" type="ComponentCollection" />
+    </xs:sequence>
+    <xs:attribute name="Height" type="xs:int" use="required" />
+    <xs:attribute name="Width" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ComponentCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Components" type="Component" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Component">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Table" type="DataTable" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Analyser" type="Analyser" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Id" type="xs:long" use="required" />
+    <xs:attribute name="Type" type="ComponentType" use="required" />
+    <xs:attribute name="Text" type="xs:string" />
+    <xs:attribute name="XAxis" type="xs:int" use="required" />
+    <xs:attribute name="YAxis" type="xs:int" use="required" />
+    <xs:attribute name="Style" type="StyleType" use="required" />
+  </xs:complexType>
+  <xs:complexType name="DataTable">
+    <xs:attribute name="AppID" type="xs:int" use="required" />
+    <xs:attribute name="ID" type="xs:int" use="required" />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Analyser">
+    <xs:attribute name="AppID" type="xs:int" use="required" />
+    <xs:attribute name="ID" type="xs:int" use="required" />
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="ComponentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="InputComponent" />
+      <xs:enumeration value="OutputCompomnet" />
+      <xs:enumeration value="Navigation" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="StyleType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Classic" />
+      <xs:enumeration value="Default" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PageCollection" nillable="true" type="PageCollection" />
+  <xs:complexType name="PageCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Pages" type="Page" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Page">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Header" type="Header" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Body" type="Body" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Footer" type="Footer" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Id" type="xs:long" use="required" />
+    <xs:attribute name="Template" type="TemplateType" use="required" />
+    <xs:attribute name="Index" type="xs:int" use="required" />
+    <xs:attribute name="IsDefault" type="xs:boolean" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Header">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Components" type="ComponentCollection" />
+    </xs:sequence>
+    <xs:attribute name="Height" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Footer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Components" type="ComponentCollection" />
+    </xs:sequence>
+    <xs:attribute name="Height" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="TemplateType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DefaultT" />
+      <xs:enumeration value="Classic" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ComponentCollection" nillable="true" type="ComponentCollection" />
+  <xs:element name="Analyser" nillable="true" type="Analyser" />
+  <xs:element name="Panel" nillable="true" type="Panel" />
+  <xs:element name="UserInfo" nillable="true" type="UserInfo" />
+  <xs:complexType name="UserInfo">
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Id" type="xs:long" use="required" />
+  </xs:complexType>
+  <xs:element name="StyleType" type="StyleType" />
+  <xs:element name="Header" nillable="true" type="Header" />
+  <xs:element name="ComponentType" type="ComponentType" />
+  <xs:element name="DataTableCollection" nillable="true" type="DataTableCollection" />
+  <xs:complexType name="DataTableCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DataTables" type="DataTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Translator" nillable="true" type="Translator" />
+  <xs:complexType name="Translator" />
+  <xs:element name="AnalyserCollection" nillable="true" type="AnalyserCollection" />
+  <xs:complexType name="AnalyserCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Analysers" type="Analyser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Component" nillable="true" type="Component" />
+  <xs:element name="TemplateType" type="TemplateType" />
+  <xs:element name="PanelCollection" nillable="true" type="PanelCollection" />
+  <xs:element name="UserApp" nillable="true" type="UserApp" />
+  <xs:complexType name="UserApp">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="User" type="UserInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DataTables" type="DataTableCollection" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Analysers" type="AnalyserCollection" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Pages" type="PageCollection" />
+    </xs:sequence>
+    <xs:attribute name="Description" type="xs:string" />
+    <xs:attribute name="Status" type="xs:string" />
+    <xs:attribute name="DefaultPage" type="xs:string" />
+  </xs:complexType>
+  <xs:element name="Page" nillable="true" type="Page" />
+  <xs:element name="DataTable" nillable="true" type="DataTable" />
+  <xs:element name="Footer" nillable="true" type="Footer" />
+</xs:schema>

@@ -1,0 +1,24 @@
+﻿@model  MVCWebUIComponent.Models.GenerateInvitationCodeModel
+
+@{
+    ViewBag.Title = "InvitationCodeGenerate";
+}
+
+<h2>InvitationCodeGenerate</h2>
+
+@using (Html.BeginForm()) {
+        <div>
+            <fieldset>
+                <div class="editor-label">
+                @Html.LabelFor(m => m.Number)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.Number)
+                @Html.ValidationMessageFor(m => m.Number)
+            </div>
+            <p>
+                <input type="submit" value="Submit" />
+            </p>
+            </fieldset>
+        </div>
+}

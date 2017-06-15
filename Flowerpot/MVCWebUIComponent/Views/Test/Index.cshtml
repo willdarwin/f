@@ -1,0 +1,157 @@
+﻿@using MVCWebUIComponent.Models
+
+<link href="@Url.Content("~/Content/csstyle.css")" rel="stylesheet" type="text/css" />
+
+<script href="@Url.Content("~/Script/csjquery.js")" type="text/javascript"></script>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>
+    Index</h2>
+@{
+    var input = new InputModel
+    {
+        Label = new LabelModel
+        {
+            Text = "Column : "
+        },
+        Text = new TextModel
+        {
+            Text = "",
+            Column = 3
+        },
+        Button = new ButtonModel
+        {
+            Text = "Submit"
+        },
+        Column = 3,
+        Row = 8
+    };
+    var dp = new DatePickerModel();
+    var dr = new DateRangeModel();
+    var a = new AccordionModel()
+    {
+        AccordionGroups = new List<AccordionGroup>()
+        {
+            new AccordionGroup()
+            {
+                Header = "Section 1",
+                Body = "11111"
+            },
+            new AccordionGroup()
+            {
+                Header = "Section 2",
+                Body = "22222"
+            },
+            new AccordionGroup()
+            {
+                Header = "Section 3",
+                Body = "33333"
+            }
+        }
+    };
+    var p = new ProgressbarModel()
+    {
+        LoadingTimeInterval = 1000,
+        IncrementTimeInterval = 50
+    };
+    var t = new TabsModel()
+    {
+        TabsGroups = new List<TabsGroup>()
+        {
+            new TabsGroup()
+            {
+                Header = "Start Tab",
+                Body = "11111"
+            },
+            new TabsGroup()
+            {
+                Header = "End Tab",
+                Body = "22222"
+            }
+        }
+    };
+    var tm = new MenuModel()
+    {
+        MenuItemList = new List<MenuItem>()
+        {
+            new MenuItem()
+            {
+                Id = "1",
+                Item = "Section 1",
+                Link = "#",
+                State = true,
+                NodeLevel = 0,
+                ParentNode = null
+            },
+            new MenuItem()
+            {
+                Id = "2",               
+                Item = "Section 2",
+                Link = "#",
+                State = true,
+                NodeLevel = 0,
+                ParentNode = null
+            },
+            new MenuItem()
+            {
+                Id = "3",                
+                Item = "Section 3",
+                Link = "#",
+                State = true,
+                NodeLevel = 1,
+                ParentNode = "2"
+            },
+            new MenuItem()
+            {
+                Id = "4",               
+                Item = "Section 4",
+                Link = "#",
+                State = true,
+                NodeLevel = 1,
+                ParentNode = "2"
+            },
+            new MenuItem()
+            {
+                Id = "5",                
+                Item = "Section 5",
+                Link = "#",
+                State = true,
+                NodeLevel = 2,
+                ParentNode = "3"
+            },
+            new MenuItem()
+            {
+                Id = "6",               
+                Item = "Section 6",
+                Link = "#",
+                State = true,
+                NodeLevel = 0,
+                ParentNode = null
+            }
+        }
+    };
+    var d = new DialogModel()
+    {
+        Title = "Basic Dialog",
+        Content = "This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.",
+        IsModal = true,
+        DialogType = DialogButtonType.OKCancel
+    };
+}
+
+@Html.Partial("Input",input)
+<br/>
+@Html.Partial("DatePicker",dp)
+<br/>
+@Html.Partial("DateRange",dr)
+<br/>
+@Html.Partial("Accordion",a)
+<br/>
+@Html.Partial("Progressbar",p)
+<br/>
+@Html.Partial("Tabs",t)
+<br/>
+@Html.Partial("Dialog",d)
+<br/>
+@Html.Partial("ClassScheduleBoard")

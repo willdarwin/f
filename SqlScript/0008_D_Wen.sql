@@ -1,0 +1,6 @@
+USE [FlowerPot]
+GO
+SET IDENTITY_INSERT [dbo].[Analyzer] ON
+INSERT [dbo].[Analyzer] ([AnalyzerId], [AnalyzerName], [CreateTime], [UserId], [SelectQuery], [JoinQuery], [WhereQuery], [IsDeleted]) VALUES (1, N'TurnoverByMonth', CAST(0x0000A26C00A1F478 AS DateTime), 1, N' month(ConsumptionRecord.StartTime) as month,sum(ConsumptionRecord.ConsumptionAmount) as turnover ', N'[ConsumptionRecord][ right join ][GymCard][ on ConsumptionRecord.CardId = GymCard.RowId ][ right join ][Customer] [ on GymCard.CustomerId = Customer.RowId ]', N'  ConsumptionRecord.StartTime >= ''2012-01-01'' and ConsumptionRecord.StartTime <= ''2012-12-31'' Group by month(ConsumptionRecord.StartTime) ', 0)
+INSERT [dbo].[Analyzer] ([AnalyzerId], [AnalyzerName], [CreateTime], [UserId], [SelectQuery], [JoinQuery], [WhereQuery], [IsDeleted]) VALUES (2, N'TurnoverByCustomerId', CAST(0x0000A26C00B8BD06 AS DateTime), 1, N' Customer.CustomerId as CustomerId,sum(ConsumptionRecord.ConsumptionAmount) as Turnover ', N'[ConsumptionRecord][ right join ][GymCard][ on ConsumptionRecord.CardId = GymCard.RowId ][ right join ][Customer] [ on GymCard.CustomerId = Customer.RowId ]', N'  1=1 Group by Customer.CustomerId ', 0)
+SET IDENTITY_INSERT [dbo].[Analyzer] OFF

@@ -1,0 +1,127 @@
+﻿@model MVCWebUIComponent.Models.AccordionModel
+@using MVCWebUIComponent.Models
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<style>
+    /* IE has layout issues when sorting (see #5413) */
+    .group
+    {
+        zoom: 1;
+    }
+    .resizable { width: 400px; height: 150px; padding: 0.5em; }
+</style>
+
+<script>
+//        $(function () {
+//            $(".accordion").accordion({
+//                collapsible: true
+//            });
+//        });
+
+//        $(function () {
+//            var icons = {
+//                header: "ui-icon-circle-arrow-e",
+//                activeHeader: "ui-icon-circle-arrow-s"
+//            };
+//            $("#accordion").accordion({
+//                icons: icons,
+//                collapsible: true,
+//            });
+//            $("#toggle").button().click(function () {
+//                $("#accordion").accordion("option", "icons", icons);
+//            });
+//        });
+
+    $(function () {
+        $(".accordion")
+        .accordion({
+            header: "> div > h3",
+            collapsible: true
+        })
+        .sortable({
+            axis: "y",
+            handle: "h3",
+            stop: function (event, ui) {
+                // IE doesn't register the blur when sorting
+                // so trigger focusout handlers to remove .ui-state-focus
+                ui.item.children("h3").triggerHandler("focusout");
+            }
+        });
+        $(".resizable").resizable();
+    });
+</script>
+<div class = "resizable">
+    <div class="accordion">
+        @{
+            foreach (var ag in Model.AccordionGroups)
+            {
+                <div class="group">
+                    <h3>
+                        @ag.Header</h3>
+                    <div>
+                        <p>
+                            @ag.Body</p>
+                    </div>
+                </div>
+            }
+        }    
+    </div>
+    @*<div class="accordion">
+        <div class="group">
+            <h3>
+                Section 1</h3>
+            <div>
+                <p>
+                    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque.
+                    Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a
+                    nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada.
+                    Vestibulum a velit eu ante scelerisque vulputate.</p>
+            </div>
+        </div>
+        <div class="group">
+            <h3>
+                Section 2</h3>
+            <div>
+                <p>
+                    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus
+                    hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum
+                    tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
+                </p>
+            </div>
+        </div>
+        <div class="group">
+            <h3>
+                Section 3</h3>
+            <div>
+                <p>
+                    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus
+                    pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque
+                    semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam
+                    nisi, eu iaculis leo purus venenatis dui.
+                </p>
+                <ul>
+                    <li>List item one</li>
+                    <li>List item two</li>
+                    <li>List item three</li>
+                </ul>
+            </div>
+        </div>
+        <div class="group">
+            <h3>
+                Section 4</h3>
+            <div>
+                <p>
+                    Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada
+                    fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et
+                    ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.
+                </p>
+                <p>
+                    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class
+                    aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                </p>
+            </div>
+        </div>
+    </div>*@
+</div>

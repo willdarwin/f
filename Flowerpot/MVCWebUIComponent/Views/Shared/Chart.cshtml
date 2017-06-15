@@ -1,0 +1,112 @@
+﻿@model MVCWebUIComponent.Models.ChartModel
+@{
+    ViewBag.Title = "Chart";
+}
+<script src="../../Scripts/canvasjs.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var chartType = "@Model.ChartType";
+        InitializeChart@{@Model.Id}(chartType);
+        $(".datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+//    function SelectChartType@{@Model.Id}(){
+//            var chartType = $("#ChartTypeSelection@{@Model.Id}").val();
+//            $("#chartContainer@{@Model.Id}").load('@Url.Content("~/App/ShowChart/")', { chartType:chartType });
+//    };
+    
+    function SelectChartType@{@Model.Id}() {
+        var chartType = $("#ChartTypeSelection@{@Model.Id}").val();
+//        $.ajax({
+//            url: '@Url.Action("Nova", "App")',
+//            type: 'get',
+//            traditional: true,
+//            data: { PageIndex:4 ,ChartType:chartType},
+//            success: function (data) {
+//                //alert(data);
+//                $("#chartContainer@{@Model.Id}").load(data);
+//            }
+//        });
+        ChangeChartType@{@Model.Id}(chartType);
+        window.updateChart(chartType);
+    }
+
+    function ChangeChartType@{@Model.Id}(chartType) {
+        var chart = document.getElementById("chartContainer@{@Model.Id}").getElementsByTagName("canvas");
+        alert(chart.item);
+        
+        chart.type = chartType;
+        chart.refresh();
+        chart.render();
+    }
+
+    var dps@{@Model.Id} = [@{
+                    for (var i = 0; i < Model.ValueCount; i++)
+                    {
+                        @Html.Raw("{ label:\""
+                            + @Model.Labels[i] + "\","
+                            + "y: "
+                            + @Model.Values[i] + "}"
+                        )
+
+                        if (i != @Model.ValueCount - 1)
+                        {
+                            @Html.Raw(",");
+                        }
+                    }
+                }];
+    
+    function InitializeChart@{@Model.Id}(chartType) {
+        var chart = new CanvasJS.Chart("chartContainer@{@Model.Id}", {
+            title: {
+                text:chartType
+            },
+            data: [{
+                type : chartType,
+                dataPoints :  dps@{@Model.Id}
+            }] 
+            
+        });
+        chart.render();
+        
+        var updateChart = function () {
+                chart.chartType = chartType;
+	            chart.render();
+	            // update chart after specified time. 
+	        };
+        var updateInterval = 1000;
+        setInterval(function () { updateChart() }, updateInterval);
+    }
+</script>
+<div id="chartDiv@{@Model.Id}">
+    <div>
+        <h1>
+            @Model.ChartTitle</h1>
+    </div>
+    <br/>
+    <div>
+@*        <table style="width: 60%; border-style: none">
+            <tr>
+                <td>
+                    <label>
+                        Chart Type:</label>
+                </td>
+                <td>
+                    <select id="ChartTypeSelection@{@Model.Id}" name="ChartTypeSelection" onchange="SelectChartType@{@Model.Id}()"
+                        style="width: 50%">
+                        <option>--Select Type--</option>
+                        <option>Pie</option>
+                        <option>Line</option>
+                        <option>Bar</option>
+                        <option>Area</option>
+                        <option>Column</option>
+                    </select>
+                </td>
+            </tr>
+        </table>*@
+    </div>
+    <div id="chartContainer@{@Model.Id}" style="height: 500px; width: 700px; border-style: dotted">
+    </div>
+</div>

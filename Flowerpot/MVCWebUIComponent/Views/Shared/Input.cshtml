@@ -1,0 +1,13 @@
+﻿@model MVCWebUIComponent.Models.InputModel
+@{
+    for (var i = 0; i < Model.Row; i++)
+    {
+        @Html.Partial("Label", @Model.Label)
+        for (var j = 0; j < Model.Text.Column; j++)
+        {
+            @Html.Partial("Text", @Model.Text)
+        }
+        @Html.Partial("Button", @Model.Button)
+        <br/>
+    }
+}

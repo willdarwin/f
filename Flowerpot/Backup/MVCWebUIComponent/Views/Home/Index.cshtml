@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = @Resources.Resources.IndexTitle;
+}
+<h2>@Resources.Resources.IndexHead</h2>
+<style>
+    .moduleEntry
+    {
+        font-size: 36px;
+        text-decoration:none; 
+        color: Blue;
+    }
+</style>
+<div style="float: left;">
+    <div style="width: 120px; height: 200px; float: left;">
+        <img src="../../Content/images/Entity.png" alt="Entities" />
+    </div>
+    <div style="width: 300px; float: left; padding-top: 40px;">
+        <div style="height: 40px; vertical-align: bottom">
+            @Html.ActionLink(@Resources.Resources.ALinkEntityList, "Index", "Idea", null, new { @class = "moduleEntry" })
+        </div>
+        <div style="padding-top: 5px;">
+            Design or Modify Your Business Entities.
+        </div>
+    </div>
+</div>
+<div style="float: left;">
+    <div style="width: 120px; height: 200px; float: left;">
+        <img src="../../Content/images/Analyzer.png" alt="Analyzer" />
+    </div>
+    <div style="width: 300px; float: left; padding-top: 40px;">
+        <div style="height: 40px; vertical-align: bottom">
+            @Html.ActionLink(@Resources.Resources.ALinkAnalyzerList, "Index", "Analyzer", null, new { @class = "moduleEntry" })
+        </div>
+        <div style="padding-top: 5px;">
+            Design or Modify Your Analyzer.
+        </div>
+    </div>
+</div>
+<div style="float: left;">
+    <div style="width: 120px; height: 200px; float: left;">
+        <img src="../../Content/images/App.png" alt="App" />
+    </div>
+    <div style="width: 300px; float: left; padding-top: 40px;">
+        <div style="height: 40px; vertical-align: bottom">
+            @Html.ActionLink(@Resources.Resources.ALinkAppList, "Index", "App", null, new { @class = "moduleEntry" })
+        </div>
+        <div style="padding-top: 5px">
+            Your Apps.
+        </div>
+    </div>
+</div>

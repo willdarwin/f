@@ -1,0 +1,137 @@
+﻿@using System.Text
+@using MVCWebUIComponent.Models
+@model MVCWebUIComponent.Models.GridModel
+<link href="@Url.Content("~/Content/themes/base/ui.jqgrid.css")" rel="stylesheet" type="text/css" />
+
+<link href="@Url.Content("~/Content/themes/" + Model.Theme + "/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+
+
+<style type="text/css">
+    .ui-jqgrid
+    {
+        margin-left: auto;
+        margin-right: auto;
+        width:728px;
+    }
+</style>
+<script src="@Url.Content("~/Scripts/grid.locale-en.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.jqGrid.min.js")" type="text/javascript"></script>
+<table class="gridContainer">
+</table>
+<div class="pagerContainer">
+</div>
+@{
+    var builder = new StringBuilder();
+    for (var i = 0; i < Model.ColNames.Count; i++)
+    {
+        builder.Append("'" + Model.ColNames[i] + "',");
+    }
+    builder.Remove(builder.Length - 1, 1);
+
+    var builder2 = new StringBuilder();
+    for (var i = 0; i < Model.ColModels.Count; i++)
+    {
+        builder2.Append("{");
+        var colModel = Model.ColModels[i];
+        foreach (var key in colModel.Keys)
+        {
+            var value = colModel[key];
+            if (value is bool)
+            {
+                builder2.Append(key + ":" + value.ToString().ToLower() + ",");
+            }
+            else if (value.GetType() == typeof(GridFunction))
+            {
+                builder2.Append(key + ":" + value.ToString() + ",");
+            }
+            else if(value.ToString().StartsWith("{"))
+            {
+                builder2.Append(key + ":" + value.ToString() + ",");
+            }
+            else
+            {
+                builder2.Append(key + ":" + "'" + colModel[key] + "',");
+            }
+        }
+        builder2.Remove(builder2.Length - 1, 1);
+        builder2.Append("},");
+    }
+    builder2.Remove(builder2.Length - 1, 1);
+}
+<script type="text/javascript">
+
+    var time = new Date();
+    var gridContainerId = "grid_" + time.getTime() + "_" + Math.floor(Math.random()*10+1);
+    var pagerContainerId = "pager_" + time.getTime() + "_" + Math.floor(Math.random()*10+1);
+    $(".gridContainer").first().attr("id", gridContainerId).removeClass("gridContainer");
+    $(".pagerContainer").first().attr("id", pagerContainerId).removeClass("pagerContainer");
+
+    var lastsel;
+    $("#" + gridContainerId).jqGrid({
+        url: '@Model.Url' + '?oper=show&ideaId=' + @Model.TableId,
+        datatype: '@Model.SourceType',
+        jsonReader: {
+            root: '@Model.MyJsonReader.Root',
+            page: '@Model.MyJsonReader.Page',
+            total: '@Model.MyJsonReader.Total',
+            id: '@Model.MyJsonReader.Id',
+            cell: '@Model.MyJsonReader.Cell',
+            records: '@Model.MyJsonReader.Records'
+        },
+        colNames: [@Html.Raw(builder.ToString())],
+        colModel: [@Html.Raw(builder2.ToString())],
+        rowNum: @Model.RowNum,
+        rowList: [@{
+            for (var i = 0; i < Model.RowList.Count; i++)
+            {
+                            @Model.RowList[i]
+                if (i != Model.RowList.Count - 1)
+                { 
+                                @Html.Raw(",");
+                }
+            }
+                 }],
+        pager: "#"+ pagerContainerId,
+        @{
+            if (!string.IsNullOrEmpty(Model.SortName))
+            {
+                @Html.Raw("        sortname: '" + @Model.SortName + "',");
+            }
+        }
+
+        sortorder: '@Model.SortOrder',
+        viewrecords: @Model.ViewRecords.ToString().ToLower(),
+        caption: "@Model.Caption",
+        @{
+            if (Model.Width != null)
+            {
+                Html.Raw("        width: '" + @Model.Width + "',");
+            }
+        }
+        multiselect: false,
+        autowidth: true,
+        autoheight: true,
+        editurl: '@Model.EditUrl' + '?ideaId=' + @Model.TableId
+    });
+    jQuery("#" + gridContainerId).jqGrid('navGrid', "#"+ pagerContainerId, { edit: true, add: true, del: true, search: true, view: true }, {url:"@Model.EditUrl" + '?ideaId=' + '@Model.TableId', reloadAfterSubmit:true, closeAfterEdit: true, afterShowForm: function (formid) {}, jqModal: true, modal: true}, {url:"@Model.EditUrl" + '?ideaId=' + '@Model.TableId', reloadAfterSubmit:true, closeAfterAdd:true, afterShowForm: function (formid) { }, jqModal: true, modal: true}, {}, {});
+    jQuery("#" + gridContainerId).jqGrid('inlineNav',{ edit: true, add: true, del: true });
+    function currencyFmatter (cellvalue, options, rowObject)
+    {
+        return '$' + cellvalue;
+    }
+
+    function OpenSubGrid(ideaId, rowId) {
+        //$('#subgridTable').jqGrid('GridUnload');
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: "application/json;utf-8",
+            url: "GetIdeaGridColumns?ideaId=" + ideaId,
+            success: function (data) {
+                createsubgrid(data, ideaId, rowId);
+            }
+
+        });
+        //$("#subgrid").dialog("open");
+    }
+</script>

@@ -1,0 +1,161 @@
+﻿@model MVCWebUIComponent.Models.ColumnInIdeaModel
+@{
+    ViewBag.Title = "EditColumn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@Resources.Resources.TitleEditAttribute</h2>
+<style type="text/css">
+    fieldset
+    {
+        color: #000000;
+        background-color: #E8EEF4;
+    }
+</style>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui.dropdownchecklist-1.4-min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    function getIdeaList() {
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: "application/json;utf-8",
+            url: "http://localhost:3638/Idea/GetIdeaList",
+            success: function (data) {
+                var ddl = $('select[class="ReferedIdeaId"]');
+                ddl.empty();
+                $.each(data, function (index, item) {
+                    ddl.append($('<option/>', {
+                        value: item.IdeaId,
+                        text: item.IdeaName
+                    }));
+                });
+            }
+        });
+    }
+
+    function getColumnsList(currentReferedIdeaId) {
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: "application/json;utf-8",
+            url: "http://localhost:3638/Idea/GetColumnsList?ideaId=" + currentReferedIdeaId,
+            success: function (data) {
+                var ddl = $('select[class="ReferedColumnId"]');
+                ddl.empty();
+
+                ddl.dropdownchecklist('destroy');
+                $.each(data, function (index, item) {
+                    ddl.append($('<option/>', {
+                        value: item.ColumnId,
+                        text: item.ColumnName
+                    }));
+                });
+                ddl.dropdownchecklist({ maxDropHeight: 150 });
+                ddl.change(function () {
+                    selectedValues = $(this).val();
+                    ddl.attr({ name: "ReferedColumnIds" });
+                    if ((selectedValues != null) && (selectedValues.length > 3)) {
+                        $("input:checkbox[value='" + selectedValues[3] + "']").attr("checked", false);
+                        alert("Less than three columns can be selected as reference name!");
+                    }
+                    if ((selectedValues == null) || (selectedValues.length < 1)) {
+                        //$("input:checkbox[value='" + selectedValues[0] + "']").attr("checked", true);
+                        alert("At least one column should be selected as reference name!");
+                    }
+                });
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        Datatype = $('select[class="DataTypeId"]').val();
+        if (Datatype == "Entity") {
+            getIdeaList();
+            $("#ReferedIdeaId_lable").show();
+            $("#ReferedIdeaId_select").show();
+            $("#ReferedColumnId_lable").show();
+            $("#ReferedColumnId_select").show();
+            $('select[class="ReferedColumnId"]').show();
+            var currentReferedIdeaId = $('select[class="ReferedIdeaId"]').val();
+            getColumnsList(currentReferedIdeaId);
+            $('select[class="ReferedIdeaId"]').change(function () {
+                var currReferedIdeaId = $('select[class="ReferedIdeaId"]').val();
+                getColumnsList(currReferedIdeaId);
+            });
+        }
+        else {
+            $("#ReferedIdeaId_lable").hide();
+            $("#ReferedIdeaId_select").hide();
+            $("#ReferedColumnId_lable").hide();
+            $("#ReferedColumnId_select").hide();
+            $('select[class="ReferedColumnId"]').hide();
+        }
+
+        $('select[class="DataTypeId"]').change(function () {
+            Datatype = $('select[class="DataTypeId"]').val();
+            if (Datatype == "Entity") {
+                getIdeaList();
+                $("#ReferedIdeaId_lable").show();
+                $("#ReferedIdeaId_select").show();
+                $("#ReferedColumnId_lable").show();
+                $("#ReferedColumnId_select").show();
+                $('select[class="ReferedColumnId"]').show();
+                var currentReferedIdeaId = $('select[class="ReferedIdeaId"]').val();
+                getColumnsList(currentReferedIdeaId);
+                $('select[class="ReferedIdeaId"]').change(function () {
+                    var currReferedIdeaId = $('select[class="ReferedIdeaId"]').val();
+                    getColumnsList(currReferedIdeaId);
+                });
+            }
+            else {
+                $("#ReferedIdeaId_lable").hide();
+                $("#ReferedIdeaId_select").hide();
+                $("#ReferedColumnId_lable").hide();
+                $("#ReferedColumnId_select").hide();
+                $('select[class="ReferedColumnId"]').hide();
+            }
+        });
+    });    
+
+</script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>@Resources.Resources.Attribute</legend>
+        @Html.HiddenFor(model => model.ColumnId)
+        <div class="editor-label">
+            @Resources.Resources.AttributeName
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ColumnName)
+            @Html.ValidationMessageFor(model => model.ColumnName)
+        </div>
+        <div class="editor-label">
+            @Resources.Resources.AttributeType
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.MyDataTypeId, new SelectList(Enum.GetValues(typeof(MVCWebUIComponent.Models.DataTypeId))), new { @class = "DataTypeId" })
+            @Html.ValidationMessageFor(model => model.MyDataTypeId)
+        </div>
+        <div class="editor-label" id="ReferedIdeaId_lable">
+            @Resources.Resources.ReferencedEntity
+        </div>
+        <div class="editor-field" id="ReferedIdeaId_select">
+            @Html.DropDownListFor(model => model.ReferedIdeaId, ViewData["ideaList"] as SelectList, new { @class = "ReferedIdeaId" })
+            @Html.ValidationMessageFor(model => model.ReferedIdeaId)
+        </div>
+        <div class="editor-label" id="ReferedColumnId_lable">
+            @Resources.Resources.ReferencedAttribute
+        </div>
+        <div class="editor-field" id="ReferedColumnId_select">
+            @Html.DropDownListFor(model => model.ReferedIdeaId, ViewData["ideaList"] as SelectList, new { @class = "ReferedColumnId" })
+            @Html.ValidationMessageFor(model => model.ReferedIdeaId)
+        </div>
+        @Html.HiddenFor(model => model.IdeaId)
+        <p>
+            <input type="submit" value=@Resources.Resources.btnSave />
+        </p>
+    </fieldset>
+}

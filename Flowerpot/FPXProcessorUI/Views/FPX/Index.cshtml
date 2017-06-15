@@ -1,0 +1,31 @@
+﻿<!doctype html>
+@using FPXProcessorUI.Models
+@model dynamic
+
+
+@using (Html.BeginForm())
+{
+@*<html>
+    <head>
+        <title>Home</title>
+        <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="/Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+        <script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+        <script src="/Scripts/jquery-ui-1.8.11.js" type="text/javascript"></script>
+
+    </head>
+    <body>*@
+        <div>
+            @*@ViewBag.razorString*@
+            <br />
+            @ViewBag.MvcHtmlString
+            <br />
+            @*@Html.Raw(ViewBag.razorString)*@
+            <br />
+            @*@Html.Partial("Label")*@
+            <input type="submit" value="Submit"/>
+            <label id="userID">test</label>
+        </div>
+@*    </body>
+</html>*@
+} 

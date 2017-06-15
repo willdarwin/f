@@ -1,0 +1,32 @@
+﻿@model MVCWebUIComponent.Models.CodesJqGridModel
+@using Trirand.Web.Mvc
+@{
+    ViewBag.Title = "ShowAllInvitationCode";
+}
+<h2>
+    ShowAllInvitationCode</h2>
+<link href="../../Content/themes/base/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+<script src="../../Scripts/grid.locale-en.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.jqGrid.min.js" type="text/javascript"></script>
+<div>
+    <table>
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                Value
+            </td>
+            <td>
+                Obsolete
+            </td>
+            <td>
+                UserId
+            </td>
+        </tr>
+        
+    </table>
+</div>
+<div>
+    @Html.Trirand().JQGrid(Model.CodesGrid, "JQGrid1")
+</div>

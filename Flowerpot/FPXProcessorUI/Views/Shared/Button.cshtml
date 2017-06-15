@@ -1,0 +1,63 @@
+﻿@using FPXProcessorUI.Models
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+@*<script>
+    $(function () {
+        $("input[type=submit], button")
+.button()
+.click(function (event) {
+    event.preventDefault();
+});
+    });
+
+    $(function () {
+        $("#rerun")
+.button()
+.click(function () {
+    alert("Running the last action");
+})
+.next()
+.button({
+    text: false,
+    icons: {
+        primary: "ui-icon-triangle-1-s"
+    }
+})
+.click(function () {
+    var menu = $(this).parent().next().show().position({
+        my: "left top",
+        at: "left bottom",
+        of: this
+    });
+    $(document).one("click", function () {
+        menu.hide();
+    });
+    return false;
+})
+.parent()
+.buttonset()
+.next()
+.hide()
+.menu();
+    });
+</script>*@
+
+@*<button>A button element</button>*@
+&nbsp; <input type="submit" value="@Model.Text"/> &nbsp;
+@*<input type="submit" value="A submit button" />
+<div style="width:20%">
+    <div>
+        <button id="rerun">
+            Run last action</button>
+        <button id="select">
+            Select an action</button>
+    </div>
+    <ul>
+        <li><a href="#">Open...</a></li>
+        <li><a href="#">Save</a></li>
+        <li><a href="#">Delete</a></li>
+    </ul>
+</div>*@

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserApp Description="Lean Gymnasium Club Management System" Status="Active" DefaultPage="ConsumptionRecord" FileName="Lean Gymnasium Club Management System" Template="Template1">
+  <User Name="admin" Id="1" />
+  <Entities>
+    <Entity EntityId ="1" EntityName="Customer"/>
+    <Entity EntityId ="2" EntityName="GymCard"/>
+    <Entity EntityId ="3" EntityName="ConsumptionRecord"/>
+  </Entities>
+  <Analyzers>
+    <Analyzer AnalyzerId ="1" AnalyzerName="TurnoverByMonth"/>
+    <Analyzer AnalyzerId ="2" AnalyzerName="TurnoverByCustomerId"/>
+  </Analyzers>
+  <LeftMenu>
+    <LeftMenuItem Value="Customer" Url="/App/Customer" Id="1" FileName="Lean Gymnasium Club Management System"/>
+    <LeftMenuItem Value="GymCard" Url="/App/GymCard" Id="2" FileName="Lean Gymnasium Club Management System"/>
+    <LeftMenuItem Value="ConsumptionRecord" Url="/App/ConsumptionRecord" Id="3" FileName="Lean Gymnasium Club Management System"/>
+    <LeftMenuItem Value="Statistics" Url="/App/Statistics" Id="4" FileName="Lean Gymnasium Club Management System"/>
+  </LeftMenu>
+  <PartialViews>
+    <PartialView>ClassScheduleBoard</PartialView>
+  </PartialViews>
+  <Pages>
+    <Page Name="Customer" Id="1" Template="Classic" Index="1" IsDefault="true">
+      <GridList>
+        <Grid EntityId="1" EntityName="Customer" Theme="sunny"/>
+      </GridList>
+    </Page>
+    <Page Name="GymCard" Id="2" Template="Classic" Index="2" IsDefault="false">
+      <GridList>
+        <Grid EntityId="2" EntityName="GymCard" Theme="sunny"/>
+      </GridList>
+    </Page>
+    <Page Name="ConsumptionRecord" Id="3" Template="Classic" Index="3" IsDefault="false">
+      <GridList>
+        <Grid EntityId="3" EntityName="ConsumptionRecord" Theme="sunny"/>
+      </GridList>
+      <TabsDesigner>
+        <TabsGroups>
+          <Tab Header="Start Tab" Body=""/>
+          <Tab Header="End Tab" Body=""/>
+        </TabsGroups>
+      </TabsDesigner>
+    </Page>
+    <Page Name="Statistics" Id="4" Template="Classic" Index="4" IsDefault="false">
+      <ChartList>
+        <Chart Id ="1" ChartTitle="Monthly Incoming Statistic" ChartType="bar" AnalyzerId ="1" AnalyzerName="TurnoverByMonth" />
+        <Chart Id ="2" ChartTitle="Individual Consumption Statistic" ChartType="line" AnalyzerId ="2" AnalyzerName="TurnoverByCustomerId" />
+      </ChartList>
+    </Page>
+  </Pages>
+</UserApp>

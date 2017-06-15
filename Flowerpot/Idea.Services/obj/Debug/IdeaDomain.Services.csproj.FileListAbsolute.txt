@@ -1,0 +1,16 @@
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\IdeaDomain.Services.dll
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\IdeaDomain.Services.pdb
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\IdeaDomain.Infrastructure.dll
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\IdeaDomain.Model.dll
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\UtilityComponent.dll
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\Newtonsoft.Json.dll
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\AutoMapper.dll
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\Microsoft.Practices.Unity.dll
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\IdeaDomain.Infrastructure.pdb
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\IdeaDomain.Model.pdb
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\bin\Debug\UtilityComponent.pdb
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\obj\Debug\IdeaDomain.Services.csprojResolveAssemblyReference.cache
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\obj\Debug\IdeaDomain.Services.dll
+D:\Codeplex\flowerport\Flowerpot\Idea.Services\obj\Debug\IdeaDomain.Services.pdb

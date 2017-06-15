@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountInfo" xml:space="preserve">
+    <value>Account Information</value>
+  </data>
+  <data name="AccountInformation" xml:space="preserve">
+    <value>Account Information</value>
+  </data>
+  <data name="btnAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="btnCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="btnDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="AttributeName" xml:space="preserve">
+    <value>Attribute Name</value>
+  </data>
+  <data name="AttributeType" xml:space="preserve">
+    <value>Attribute Type</value>
+  </data>
+  <data name="ReferencedEntity" xml:space="preserve">
+    <value>ReferencedEntity</value>
+  </data>
+  <data name="ReferencedAttribute" xml:space="preserve">
+    <value>ReferencedAttributes</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="TitleCreateEntity" xml:space="preserve">
+    <value>Create Entity</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email address</value>
+  </data>
+  <data name="EmailValidate" xml:space="preserve">
+    <value>Email address is required.</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="IndexHead" xml:space="preserve">
+    <value>Welcome!</value>
+  </data>
+  <data name="IndexTitle" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="LogOn" xml:space="preserve">
+    <value>LogOn</value>
+  </data>
+  <data name="LogOnHead" xml:space="preserve">
+    <value>Log On</value>
+  </data>
+  <data name="LogOnHeadMessage1" xml:space="preserve">
+    <value>Please enter your user name and password.</value>
+  </data>
+  <data name="LogOnHeadMessage2" xml:space="preserve">
+    <value>If you don't have an account.</value>
+  </data>
+  <data name="LogOnSummaryMessage" xml:space="preserve">
+    <value>Login was unsuccessful. Please correct the errors and try again.</value>
+  </data>
+  <data name="LogOnTitle" xml:space="preserve">
+    <value>Log On</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordNotMatch" xml:space="preserve">
+    <value>The password and confirmation password do not match</value>
+  </data>
+  <data name="PasswordToShort" xml:space="preserve">
+    <value>The {0} must be at least {2} characters long.</value>
+  </data>
+  <data name="PasswordValidate" xml:space="preserve">
+    <value>You must specify the Password</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RegisterHead" xml:space="preserve">
+    <value>Create a New Account</value>
+  </data>
+  <data name="RegisterMessage" xml:space="preserve">
+    <value>Use the form below to create a new account</value>
+  </data>
+  <data name="RegisterTitle" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="SummaryMessage" xml:space="preserve">
+    <value>Account creation was unsuccessful. Please correct the errors and try again</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="UsernameValidate" xml:space="preserve">
+    <value>You must specify username</value>
+  </data>
+  <data name="ViewFlowerpot" xml:space="preserve">
+    <value>View Object List</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Information Management Platform</value>
+  </data>
+  <data name="WelcomeUser" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="ALinkBackEntityList" xml:space="preserve">
+    <value>Back to Entity List</value>
+  </data>
+  <data name="ALinkCreateNewEntity" xml:space="preserve">
+    <value>Create New Entity</value>
+  </data>
+  <data name="ALinkDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ALinkDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="ALinkEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="btnSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="TitleEditEntity" xml:space="preserve">
+    <value>Edit Entity</value>
+  </data>
+  <data name="Entity" xml:space="preserve">
+    <value>Entity</value>
+  </data>
+  <data name="CreateTime" xml:space="preserve">
+    <value>CreateTime</value>
+  </data>
+  <data name="EntityName" xml:space="preserve">
+    <value>Entity Name</value>
+  </data>
+  <data name="EntityDescription" xml:space="preserve">
+    <value>Entity Description</value>
+  </data>
+  <data name="Attribute" xml:space="preserve">
+    <value>Attribute</value>
+  </data>
+  <data name="TitleEditAttribute" xml:space="preserve">
+    <value>Edit Attribute</value>
+  </data>
+  <data name="ALinkEntityList" xml:space="preserve">
+    <value>Entity List</value>
+  </data>
+  <data name="TitleEntityDetails" xml:space="preserve">
+    <value>Entity Details</value>
+  </data>
+  <data name="NoColumns" xml:space="preserve">
+    <value>No Columns Found</value>
+  </data>
+  <data name="ALinkData" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="ErrDefault" xml:space="preserve">
+    <value>An unknown error occurred. Please verify your entry and try again.</value>
+  </data>
+  <data name="ErrEmailRegistered" xml:space="preserve">
+    <value>A user name for that e-mail address already exists. Please enter a different e-mail address.</value>
+  </data>
+  <data name="ErrUserNameRegistered" xml:space="preserve">
+    <value>User name already exists. Please enter a different user name.</value>
+  </data>
+  <data name="InvitationCode" xml:space="preserve">
+    <value>InvitationCode</value>
+  </data>
+  <data name="InvitationCodeError" xml:space="preserve">
+    <value>The invitation code is not correct</value>
+  </data>
+  <data name="ALinkAppList" xml:space="preserve">
+    <value>Application List</value>
+  </data>
+  <data name="AnalyzerName" xml:space="preserve">
+    <value>Analyzer Name</value>
+  </data>
+  <data name="ALinkCreateNewAnalyzer" xml:space="preserve">
+    <value>Create New Analyzer</value>
+  </data>
+  <data name="TitleEntityData" xml:space="preserve">
+    <value>Entity Data</value>
+  </data>
+  <data name="ALinkAnalyzerList" xml:space="preserve">
+    <value>Analyzer List</value>
+  </data>
+  <data name="Operators" xml:space="preserve">
+    <value>Operators</value>
+  </data>
+  <data name="Analyzer" xml:space="preserve">
+    <value>Analyzer</value>
+  </data>
+  <data name="TabChinese" xml:space="preserve">
+    <value>Chinese</value>
+  </data>
+  <data name="TabEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="TabHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="TabResource" xml:space="preserve">
+    <value>Resource</value>
+  </data>
+  <data name="ALinkBackAnalyzerList" xml:space="preserve">
+    <value>Back to Analyzer List</value>
+  </data>
+  <data name="TitleAnalyzerData" xml:space="preserve">
+    <value>Analyzer Data</value>
+  </data>
+  <data name="TitleCreateAnalyzer" xml:space="preserve">
+    <value>Create Analyzer</value>
+  </data>
+</root>

@@ -1,0 +1,67 @@
+﻿@using MVCWebUIComponent.Models;
+@using IdeaDomain.DomainLayer;
+@using IdeaDomain.ServiceLayer;
+@using Microsoft.Practices.EnterpriseLibrary.PolicyInjection;
+@using Container = GeneralUtilities.Utilities.Unity.Container;
+@using IdeaDomain.DomainLayer.Entities;
+
+
+@{
+    GridModel model = new GridModel();
+
+    model.TableId = 1;
+
+    IIdeaService ideaService = PolicyInjection.Wrap<IIdeaService>(Container.Resolve<IdeaService>());
+    List<ColumnInIdea> columns = ideaService.GetColumnsByIdea(model.TableId);
+    
+    model.MyJsonReader.Root = "Rows";
+    model.MyJsonReader.Page = "Page";
+    model.MyJsonReader.Total = "TotalPages";
+    model.MyJsonReader.Id = "Id";
+    model.MyJsonReader.Cell = "Cell";
+    model.MyJsonReader.Records = "TotalRecords";
+
+    for (int i = 0; i < columns.Count; i++ )
+    {
+        ColumnInIdea column = columns[i];
+        model.ColNames.Add(column.ColumnName);
+
+        ColModel colModel = new ColModel();
+        colModel.Add("name", column.ColumnName);
+        colModel.Add("index", column.ColumnName);
+        colModel.Add("search", true);
+        //colModel1.Add("formatter", "date");
+        colModel.Add("formatoptions", "{srcformat: 'ISO8601Long',  newformat: 'm/d/Y', defaultValue:null}");
+        colModel.Add("editable", true);
+        colModel.Add("edittype", "text");
+        if(column.DataTypeId == 2)
+        {
+            colModel.Add("editoptions", "{ size: 12,  maxlengh: 12,  dataInit: function (element) {  $(element).datepicker({ dateFormat: 'mm/dd/yy' } ) } }");
+        }
+        else
+        {
+            colModel.Add("editoptions", "{ size: 12,  maxlengh: 12}");
+        }
+        model.ColModels.Add(colModel);
+    }
+
+    model.ViewRecords = true;
+
+    model.SourceType = GridSourceType.json;
+    model.Url = "/Test/GridOperation";
+    model.RowNum = 5;
+
+    model.RowList.Add(5);
+    model.RowList.Add(10);
+    model.RowList.Add(20);
+
+    model.Caption = "Grid List Test";
+    model.SortName = "Date";
+    model.SortOrder = GridSortOrder.desc;
+
+    model.EditUrl = "/Test/GridOperation";
+
+    model.Theme = "le-frog";
+}
+
+@Html.Partial("Grid", model)

@@ -1,0 +1,43 @@
+﻿@model FPXProcessorUI.Models.ChartModel
+
+@using System.Text;
+@{
+    ViewBag.Title = "Chart";
+    }
+
+<script src="../../Scripts/canvasjs.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        InitializeChart();
+    });
+    function InitializeChart() {
+        var chart = new CanvasJS.Chart("chartContainer", {
+
+            title: {
+                text: "@Model.chartTitle"
+            },
+            data: [{
+                /*** type "column" to "bar", "area", "line" or "pie"***/
+                type: "@Model.chartType", 
+                dataPoints: [@{
+                for(int i = 0; i <Model.valueCount; i++)
+                {
+                    @Html.Raw("{ label:\""
+                    + @Model.Labels[i] + "\"," 
+                    + "y: "
+                    + @Model.Values[i] + "}" 
+                    );
+                    if(i != @Model.valueCount - 1)
+                    {
+                        @Html.Raw(",");
+                    }
+                }
+                }] //the end for dataPoints
+            }] // the end for data
+        });
+        chart.render();
+    }
+</script>
+
+<div id="chartContainer" style="height: 500px; width: 500px;"></div>

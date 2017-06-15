@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3E4DEFDE-9FAA-42A8-86CC-27CD250BA8C0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IdeaDomainTest</RootNamespace>
+    <AssemblyName>IdeaDomainTest</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\Lib\AutoMapper\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\Lib\Entlib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.PolicyInjection">
+      <HintPath>..\Lib\Entlib\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Entlib\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Entlib\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Entlib\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\Lib\Entlib\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
+      <HintPath>..\Lib\Entlib\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Lib\Newtonsoft\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnalyzerRepositoryTest.cs" />
+    <Compile Include="AnalyzerServiceTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AuthorityDomain.Infrastructure\AuthorityDomain.Infrastructure.csproj">
+      <Project>{47233E43-E02C-4B65-9A96-4930AA6B8EBD}</Project>
+      <Name>AuthorityDomain.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AuthorityDomain.Model\AuthorityDomain.Model.csproj">
+      <Project>{4FC7B9A6-BED3-4730-89DD-FF483B797433}</Project>
+      <Name>AuthorityDomain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AuthorityDomain.Services\AuthorityDomain.Services.csproj">
+      <Project>{E1B85175-DFF4-4945-8D08-61F9DF5D612B}</Project>
+      <Name>AuthorityDomain.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AuthorityDomainTest\AuthorityDomainTest.csproj">
+      <Project>{8778F4D9-ECD4-44A3-B2C2-6E83EA2D6157}</Project>
+      <Name>AuthorityDomainTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Idea.Services\IdeaDomain.Services.csproj">
+      <Project>{56049A65-0D70-47AA-A894-6016A5C66F22}</Project>
+      <Name>IdeaDomain.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IdeaDomain.Infrastructure\IdeaDomain.Infrastructure.csproj">
+      <Project>{16C384F3-DD97-4E8E-849E-36D3B6957A1C}</Project>
+      <Name>IdeaDomain.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IdeaDomain.Model\IdeaDomain.Model.csproj">
+      <Project>{CC76F158-AAEE-4B7A-B2F6-CA9011576ED4}</Project>
+      <Name>IdeaDomain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCWebUIComponent\MVCWebUIComponent.csproj">
+      <Project>{EDEE3D5C-9DD8-4E3A-82FA-790F17D81026}</Project>
+      <Name>MVCWebUIComponent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserDomain.Infrastructure\UserDomain.Infrastructure.csproj">
+      <Project>{5AF9D91C-2346-4092-B895-E38301F1C5E3}</Project>
+      <Name>UserDomain.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserDomain.Model\UserDomain.Model.csproj">
+      <Project>{271DECAF-6107-4CB6-A27B-E05313B20C48}</Project>
+      <Name>UserDomain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserDomain.Services\UserDomain.Services.csproj">
+      <Project>{D21A68C6-F36D-4C7C-BDE2-65A03ECFFBA9}</Project>
+      <Name>UserDomain.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserDomainTest\UserDomainTest.csproj">
+      <Project>{0F60ED7C-3CC1-4A78-9FB5-F65DD3E068EA}</Project>
+      <Name>UserDomainTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UtilityComponent\UtilityComponent.csproj">
+      <Project>{6BC3C18D-BC81-4175-B874-3589D0B3F2C3}</Project>
+      <Name>UtilityComponent</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Content Include="Unity.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

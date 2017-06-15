@@ -1,0 +1,5 @@
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Model\bin\Debug\AuthorityDomain.Model.dll
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Model\bin\Debug\AuthorityDomain.Model.pdb
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Model\obj\Debug\AuthorityDomain.Model.csprojResolveAssemblyReference.cache
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Model\obj\Debug\AuthorityDomain.Model.dll
+D:\Codeplex\flowerport\Flowerpot\AuthorityDomain.Model\obj\Debug\AuthorityDomain.Model.pdb

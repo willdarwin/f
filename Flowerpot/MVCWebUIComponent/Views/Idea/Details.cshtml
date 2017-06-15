@@ -1,0 +1,95 @@
+﻿@model MVCWebUIComponent.Models.IdeaModel
+@{
+    ViewBag.Title = @Resources.Resources.TitleEntityDetails;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    @Resources.Resources.TitleEntityDetails</h2>
+<style type="text/css">
+    table td
+    {
+        border: 2px solid #668B8B;
+    }
+    
+    table tr
+    {
+        color: #000000;
+        background-color: #E8EEF4;
+    }
+    
+    table
+    {
+        margin: 5px 5px 10px 5px;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>@Resources.Resources.Entity</legend>
+        <table width="100%">
+            <tr>
+                <td>
+                    @Resources.Resources.EntityName
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.IdeaName)
+                </td>
+                <td>
+                    @Resources.Resources.EntityDescription
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.IdeaDescription)
+                </td>
+            </tr>
+        </table>
+        @if (Model.Columns != null)
+        {
+            <table width="100%">
+                <tr>
+                    <td>
+                        @Resources.Resources.AttributeName
+                    </td>
+                    <td>
+                        @Resources.Resources.AttributeType
+                    </td>
+                    <td>
+                        @Resources.Resources.ReferencedEntity
+                    </td>
+                    <td>
+                        @Resources.Resources.ReferencedAttribute
+                    </td>
+                    <td>
+                        @Resources.Resources.CreateTime
+                    </td>
+                </tr>
+                @foreach (var item in Model.Columns)
+                {
+                    <tr>
+                        <td>
+                            @item.ColumnName
+                        </td>
+                        <td>
+                            @item.MyDataTypeId
+                        </td>
+                        <td>
+                            @item.ReferedIdeaIdName
+                        </td>
+                        <td>
+                            @item.ReferedColumnNames
+                        </td>
+                        <td>
+                            @item.CreateTime
+                        </td>
+                    </tr>
+                }
+            </table>  
+        }
+        else
+        {
+            <p>@Resources.Resources.NoColumns</p>
+        }
+    </fieldset>
+}
+<div>
+    @Html.ActionLink(@Resources.Resources.ALinkBackEntityList, "Index")
+</div>

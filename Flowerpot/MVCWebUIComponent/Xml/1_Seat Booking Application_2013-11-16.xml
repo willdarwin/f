@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserApp Description="Seat Booking Application" Status="Active" DefaultPage="ConsumptionRecord" FileName="Seat Booking Application" Template="Template2">
+  <User Name="admin" Id="1" />
+  <Entities>
+    <Entity EntityId ="4" EntityName="SeatBooking"/>
+  </Entities>
+  <Pages>
+    <Page Name="Map" Id="1" Template="Classic" Index="1" IsDefault="true">
+      <Bookings>
+        <Booking EntityId="4" EntityName="SeatBooking" />
+      </Bookings>
+    </Page>
+    <Page Name="BookInfo" Id="2" Template="Classic" Index="1" IsDefault="true">
+      <GridList>
+        <Grid EntityId="4" EntityName="SeatBooking" Theme="trontastic"/>
+      </GridList>
+      <ChartList>
+        <Chart Id ="1" ChartTitle="" ChartType="pie" AnalyzerId ="3" AnalyzerName="UsedSeatByFloor" />
+      </ChartList>
+    </Page>
+  </Pages>
+</UserApp>

@@ -1,0 +1,36 @@
+﻿@model MVCWebUIComponent.Models.DateRangeModel
+           
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<style type="text/css">
+  body {
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	font-size: 62.5%;
+}  
+</style>
+<script type="text/javascript">
+    $(function () {
+        $(".from").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 3,
+            onClose: function (selectedDate) {
+                $(".to").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $(".to").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 3,
+            onClose: function (selectedDate) {
+                $(".from").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+    });
+</script>
+
+<label for="from">From</label>
+<input type="text" class="from" name="from" />
+<label for="to">to</label>
+<input type="text" class="to" name="to" />

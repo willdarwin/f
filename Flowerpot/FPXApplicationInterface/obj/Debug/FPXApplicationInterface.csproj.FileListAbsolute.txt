@@ -1,0 +1,5 @@
+D:\Codeplex\flowerport\Flowerpot\FPXApplicationInterface\bin\Debug\FPXApplicationInterface.dll
+D:\Codeplex\flowerport\Flowerpot\FPXApplicationInterface\bin\Debug\FPXApplicationInterface.pdb
+D:\Codeplex\flowerport\Flowerpot\FPXApplicationInterface\obj\Debug\FPXApplicationInterface.csprojResolveAssemblyReference.cache
+D:\Codeplex\flowerport\Flowerpot\FPXApplicationInterface\obj\Debug\FPXApplicationInterface.dll
+D:\Codeplex\flowerport\Flowerpot\FPXApplicationInterface\obj\Debug\FPXApplicationInterface.pdb

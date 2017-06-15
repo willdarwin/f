@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    
+    <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div class="page">
+        <div id="header">
+            <div id="title">
+                <h1>@Resources.Resources.Welcome</h1>
+            </div>
+            <div id="logindisplay">
+                @Html.Partial("_LogOnPartial")
+            </div>
+            <div id="menucontainer">
+                <ul id="menu">
+                    @{ 
+                        string tempAction = ViewContext.RouteData.Route.GetRouteData(this.Context).Values["action"] as string;
+                    }
+                    <li>@Html.ActionLink(@Resources.Resources.TabHome, "Index", "Home")</li>
+                    <li>@Html.ActionLink(@Resources.Resources.TabEnglish, tempAction, new { localize = "en-US" })</li>
+                    <li>@Html.ActionLink(@Resources.Resources.TabChinese, tempAction, new { localize = "zh-CN" })</li>
+                </ul>
+            </div>
+        </div>
+        <div id="main">
+            @RenderBody()
+            <div id="footer">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

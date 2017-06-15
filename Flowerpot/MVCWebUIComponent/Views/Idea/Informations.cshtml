@@ -1,0 +1,114 @@
+﻿@model MVCWebUIComponent.Models.IdeaDetailModel
+@{
+    ViewBag.Title = "Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="@Url.Content("~/Content/themes/base/ui.jqgrid.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/grid.locale-en.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.jqGrid.min.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        GetDynamicCols();
+        $("#subgrid").dialog({
+            width: 500,
+            autoOpen: false,
+            show: {
+                effect: "blind",
+                duration: 500
+            },
+            hide: {
+                effect: "blind",
+                duration: 500
+            }
+        });
+    });
+    function OpenSubGrid(ideaId, rowId) {
+        $('#subgridTable').jqGrid('GridUnload');
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: "application/json;utf-8",
+            url: "GetIdeaGridColumns?ideaId=" + ideaId,
+            success: function (data) {
+                createsubgrid(data, ideaId, rowId);
+            }
+
+        });
+        $("#subgrid").dialog("open");
+    }
+    function GetDynamicCols() {
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: "application/json;utf-8",
+            url: "GetIdeaGridColumns?ideaId=" + "@ViewBag.ideaId",
+            success: function (data) {
+                creategrid(data);
+            }
+        });
+    }
+
+    function creategrid(data) {
+        $("#gridTable").jqGrid({
+            url: "GridData?ideaId=" + "@ViewBag.ideaId",
+            editurl: "EditData?ideaId=" + "@ViewBag.ideaId",
+            datatype: 'json',
+            autowidth: true,
+            height: 300,
+            rowNum: 20,
+            rowList: [1, 10, 20],
+            shrinkToFit: true,
+            altRows: true,
+            multiselect: true,
+            ajaxSelectOptions: 100,
+            colNames: data.colNames,
+            colModel: data.colModels,
+            pager: '#ptoolbar',
+            viewrecords: true,
+            hidegrid: false,
+            sortname: 'R.RowId',
+            caption: data.IdeaName,
+            loadtext: "loading data......"
+        });
+        jQuery("#gridTable").jqGrid('navGrid', '#ptoolbar', { edit: false, add: false, del: true });
+        jQuery("#gridTable").jqGrid('inlineNav', '#ptoolbar', { edit: true, add: true, del: true });
+        jQuery("#gridTable").jqGrid('filterToolbar', { stringResult: true, searchOnEnter: false });
+    }
+
+    function createsubgrid(data, ideaId, rowId) {
+        $("#subgridTable").jqGrid({
+            url: "GridDataByRowId?ideaId=" + ideaId + "&rowId=" + rowId,
+            datatype: 'json',
+            width: 460,
+            height: 100,
+            shrinkToFit: true,
+            altRows: true,
+            colNames: data.colNames,
+            colModel: data.colModels,
+            viewrecords: true,
+            hidegrid: false,
+            loadonce: false,
+            sortname: 'R.RowId',
+            caption: data.IdeaName,
+            loadtext: "loading data......"
+        });
+        $("#subgridTable").trigger("reloadGrid");
+    }
+</script>
+<div style="height: 90px; margin-top: -15px;">
+    <img alt="Entities" style="width: 55px; height: 75px; float: left" src="../../Content/images/Entity.png" />
+    <div style="width: 300px; float: left; margin-top: 30px; margin-left: 10px; font-size: 24px;
+        color: black;">@Resources.Resources.TitleEntityData</div>
+</div>
+<table id="gridTable">
+</table>
+<div id="ptoolbar">
+</div>
+<div class="subgrid" id="subgrid">
+    <table id="subgridTable">
+    </table>
+</div>
+<div>
+    @Html.ActionLink(@Resources.Resources.ALinkBackEntityList, "Index")
+</div>

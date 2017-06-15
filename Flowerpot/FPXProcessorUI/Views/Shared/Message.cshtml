@@ -1,0 +1,11 @@
+﻿@model List<string>
+<label>
+    Truck Name:</label>
+<input id="truckName" type="text" />
+<input type="submit" id="submit" value="Submit"/>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item</li>
+    }
+</ul>

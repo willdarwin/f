@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserApp Description="AIAS CASES" Status="Active" DefaultPage="ConsumptionRecord" FileName="1_AisaCase Analyzer_2014-01-13.xml" Template="Template1">
+  <User Name="admin" Id="1" />
+  <Entities>
+    <Entity EntityId ="1" EntityName="Team"/>
+    <Entity EntityId ="2" EntityName="CaseType"/>
+    <Entity EntityId ="3" EntityName="Impact"/>
+    <Entity EntityId ="4" EntityName="Urgency"/>
+    <Entity EntityId ="8" EntityName="AsiaCases"/>
+  </Entities>
+  <Analyzers>
+    <Analyzer AnalyzerId ="11" AnalyzerName="Request from Asia DBS"/>
+    <Analyzer AnalyzerId ="23" AnalyzerName="Case number in one month"/>
+    <Analyzer AnalyzerId ="24" AnalyzerName="Case from caller"/>
+    <Analyzer AnalyzerId ="26" AnalyzerName="Urgency information"/>
+    <Analyzer AnalyzerId ="27" AnalyzerName="Type information"/>
+    <Analyzer AnalyzerId ="28" AnalyzerName="Impact information"/>
+    <Analyzer AnalyzerId ="29" AnalyzerName="Most common case:BALDO problem/request/question"/>
+    <Analyzer AnalyzerId ="30" AnalyzerName="2nd common case:User login portal failed"/>
+    <Analyzer AnalyzerId ="31" AnalyzerName="3rd common case:Request Application access"/>
+    <Analyzer AnalyzerId ="32" AnalyzerName="4th common case:User missing link in Portal"/>
+    <Analyzer AnalyzerId ="33" AnalyzerName="5th common case:Request Application for partner"/>
+  </Analyzers>
+  <LeftMenu>
+    <LeftMenuItem Value="Team" Url="/App/Teams" Id="1" FileName="1_AisaCase Analyzer_2014-01-13.xml"/>
+    <LeftMenuItem Value="CaseType" Url="/App/CaseType" Id="2" FileName="1_AisaCase Analyzer_2014-01-13.xml"/>
+    <LeftMenuItem Value="Impact" Url="/App/Cases" Id="3" FileName="1_AisaCase Analyzer_2014-01-13.xml"/>
+    <LeftMenuItem Value="Urgency" Url="/App/Cases" Id="4" FileName="1_AisaCase Analyzer_2014-01-13.xml"/>
+    <LeftMenuItem Value="AsiaCases" Url="/App/AsiaCases" Id="5" FileName="1_AisaCase Analyzer_2014-01-13.xml"/>
+    <LeftMenuItem Value="Statistics" Url="/App/Statistics" Id="6" FileName="1_AisaCase Analyzer_2014-01-13.xml"/>
+    <LeftMenuItem Value="TopCases" Url="/App/TopCases" Id="7" FileName="1_AisaCase Analyzer_2014-01-13.xml"/>
+  </LeftMenu>
+  <Pages>
+    <Page Name="Team" Id="1" Template="Classic" Index="1" IsDefault="true">
+      <GridList>
+        <Grid EntityId="1" EntityName="Team" Theme="base"/>
+      </GridList>
+    </Page>
+    <Page Name="Type" Id="2" Template="Classic" Index="2" IsDefault="false">
+      <GridList>
+        <Grid EntityId="2" EntityName="CaseType" Theme="base"/>
+      </GridList>
+    </Page>
+    <Page Name="Type" Id="3" Template="Classic" Index="3" IsDefault="false">
+      <GridList>
+        <Grid EntityId="3" EntityName="Impact" Theme="base"/>
+      </GridList>
+    </Page>
+    <Page Name="Type" Id="4" Template="Classic" Index="4" IsDefault="false">
+      <GridList>
+        <Grid EntityId="4" EntityName="Urgency" Theme="base"/>
+      </GridList>
+    </Page>
+    <Page Name="AsiaCases" Id="5" Template="Classic" Index="5" IsDefault="false">
+      <GridList>
+        <Grid EntityId="8" EntityName="AsiaCases" Theme="base"/>
+      </GridList>
+    </Page>
+    <Page Name="Statistics" Id="6" Template="Classic" Index="6" IsDefault="false">
+      <ChartList>
+        <Chart Id ="1" ChartTitle="Case number in one month(3 months)" ChartType="pie" AnalyzerId ="23" AnalyzerName="Case number in one month" />
+        <Chart Id ="2" ChartTitle="Summarized Type information(3 months)" ChartType="pie" AnalyzerId ="27" AnalyzerName="Type information" />
+        <Chart Id ="3" ChartTitle="Summarized Urgency information(3 months)" ChartType="pie" AnalyzerId ="26" AnalyzerName="Urgency information" />
+        <Chart Id ="4" ChartTitle="Summarized Impact information(3 months)" ChartType="pie" AnalyzerId ="28" AnalyzerName="Impact information"/>
+        <Chart Id ="5" ChartTitle="Summarized request according cases from DBS AISA(3 months)" ChartType="column" AnalyzerId ="11" AnalyzerName="Request from Asia DBS" />
+      </ChartList>
+    </Page>
+    <Page Name="TopCases" Id="7" Template="Classic" Index="6" IsDefault="false">
+      <ChartList>
+        <Chart Id ="7" ChartTitle="Most common case:BALDO problem/request/question" ChartType="bar" AnalyzerId ="29" AnalyzerName="Most common case:BALDO problem/request/question"/>
+        <Chart Id ="8" ChartTitle="2nd common case:User login portal failed" ChartType="bar" AnalyzerId ="30" AnalyzerName="2nd common case:User login portal failed"/>
+        <Chart Id ="9" ChartTitle="3rd common case:Request Application access" ChartType="bar" AnalyzerId ="31" AnalyzerName="3rd common case:Request Application access"/>
+        <Chart Id ="10" ChartTitle="4th common case:User missing link in Portal" ChartType="pie" AnalyzerId ="32" AnalyzerName="4th common case:User missing link in Portal"/>
+        <Chart Id ="11" ChartTitle="5th common case:Request Application for partner" ChartType="bar" AnalyzerId ="33" AnalyzerName="5th common case:Request Application for partner"/>
+      </ChartList>
+    </Page>
+  </Pages>
+</UserApp>

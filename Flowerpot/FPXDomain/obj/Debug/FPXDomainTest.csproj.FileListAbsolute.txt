@@ -1,0 +1,7 @@
+D:\Codeplex\flowerport\Flowerpot\FPXDomain\bin\Debug\FPXDomain.dll
+D:\Codeplex\flowerport\Flowerpot\FPXDomain\bin\Debug\FPXDomain.pdb
+D:\Codeplex\flowerport\Flowerpot\FPXDomain\bin\Debug\FPXApplicationInterface.dll
+D:\Codeplex\flowerport\Flowerpot\FPXDomain\bin\Debug\FPXApplicationInterface.pdb
+D:\Codeplex\flowerport\Flowerpot\FPXDomain\obj\Debug\FPXDomainTest.csprojResolveAssemblyReference.cache
+D:\Codeplex\flowerport\Flowerpot\FPXDomain\obj\Debug\FPXDomain.dll
+D:\Codeplex\flowerport\Flowerpot\FPXDomain\obj\Debug\FPXDomain.pdb

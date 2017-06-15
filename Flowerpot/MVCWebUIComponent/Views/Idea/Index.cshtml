@@ -1,0 +1,40 @@
+﻿@model List<MVCWebUIComponent.Models.IdeaModel>
+@{
+    ViewBag.Title = @Resources.Resources.Index;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="height: 90px; margin-top: -15px;">
+    <img alt="Entities" style="width: 55px; height: 75px; float: left" src="../../Content/images/Entity.png" />
+    <div style="width: 300px; float: left; margin-top: 30px; margin-left: 10px; font-size: 24px;
+        color: black;">@Resources.Resources.ALinkEntityList</div>
+    <div style="float: right; font-size: x-large; margin-top: 30px;">@Html.ActionLink(@Resources.Resources.ALinkCreateNewEntity, "Create")</div>
+</div>
+@foreach (var item in Model)
+{
+    <div style="float: left;">
+        <table style="border: 0 solid silver; width: 400px; background-color: hsl(160, 0%, 100%);
+            margin-left: 10px; margin-bottom: 10px; border-collapse: 0px;">
+            <tr style="height: 20px;">
+                <td colspan="2" style="text-align: right; padding-right: 5px;">
+                    <img alt="Add" style="width:18px; height:18px; cursor: pointer" onclick="javascript: window.open('@Url.Action("Edit", new { id = item.IdeaId })');" src="../../Content/images/Edit.png" />
+                    <img alt="Informations" style="width:18px; height:18px; cursor: pointer" onclick="javascript: window.open('@Url.Action("Informations", new { ideaId = item.IdeaId })');" src="../../Content/images/Data.png" />
+                    <img alt="Delete" style="width:18px; height:18px; cursor: pointer" onclick="javascript: window.open('@Url.Action("Delete", new { id = item.IdeaId })');" src="../../Content/images/Delete.png" />
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="font-size: 24px; width: 240px; border-right: 0;">
+                    <a href="@Url.Action("Informations", new { ideaId = item.IdeaId })" style="text-decoration:none; color:Blue; cursor: pointer;">
+                        @Html.DisplayFor(model => item.IdeaName)</a>
+                </td>
+                <td style="text-align: right; width: 160px; border-left: 0;">
+                    @Html.DisplayFor(model => item.CreateTime)
+                </td>
+            </tr>
+            <tr style="height: 48px;">
+                <td colspan="2">
+                    @Html.DisplayFor(model => item.IdeaDescription)
+                </td>
+            </tr>
+        </table>
+    </div>
+}

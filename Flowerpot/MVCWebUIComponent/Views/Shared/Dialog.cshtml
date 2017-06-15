@@ -1,0 +1,58 @@
+﻿@model MVCWebUIComponent.Models.DialogModel
+@using MVCWebUIComponent.Models    
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $(".dialog").dialog({
+            autoOpen: false,
+            show: {
+                effect: "blind",
+                duration: 1000
+            },
+            hide: {
+                effect: "explode",
+                duration: 1000
+            },
+            modal : @Convert.ToInt32(@Model.IsModal),
+            buttons: {
+                @{
+                    if(Model.DialogType == DialogButtonType.OKCancel)
+                    {
+                       <text>
+                        OK: function() {
+                               $( this ).dialog( "close" );
+                            },
+                        Cancel: function() {
+                              $( this ).dialog( "close" );
+                        }
+                       </text>
+                    }
+                    else if(Model.DialogType == DialogButtonType.YesNo)
+                    {
+                        <text>
+                        Yes: function() {
+                               $( this ).dialog( "close" );
+                            },
+                        No: function() {
+                              $( this ).dialog( "close" );
+                        }
+                       </text>
+                    }
+                }
+                
+            }
+            
+        });
+        $("#opener").click(function () {
+            $(".dialog").dialog("open");
+        });
+    });
+</script>
+
+<div class="dialog" title="@Model.Title">
+<p>@Model.Content</p>
+</div>
+<button id="opener">Open Dialog</button>

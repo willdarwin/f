@@ -1,0 +1,75 @@
+﻿@model MVCWebUIComponent.Models.IdeaDetailModel
+@{
+    ViewBag.Title = "Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="@Url.Content("~/Content/themes/base/ui.jqgrid.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/grid.locale-en.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.jqGrid.min.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        GetDynamicCols();
+        $("#subgrid").dialog({
+            autoOpen: false,
+            show: {
+                effect: "blind",
+                duration: 500
+            },
+            hide: {
+                effect: "blind",
+                duration: 500
+            }
+        });
+    });
+    function GetDynamicCols() {
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: "application/json;utf-8",
+            url: "GetAnalyzerGridColumns?dataId=" + "@ViewBag.dataId",
+            success: function (data) {
+                creategrid(data);
+            }
+        });
+    }
+
+    function creategrid(data) {
+        $("#gridTable").jqGrid({
+            url: "GridData?dataId=" + "@ViewBag.dataId",
+            datatype: 'json',
+            autowidth: true,
+            autoheight: true,
+            rowNum: 20,
+            rowList: [1, 10, 20],
+            shrinkToFit: true,
+            altRows: true,
+            multiselect: true,
+            ajaxSelectOptions: 100,
+            colNames: data.colNames,
+            colModel: data.colModels,
+            pager: '#ptoolbar',
+            viewrecords: true,
+            hidegrid: false,
+            sortname: data.sidx,
+            caption: data.AnalyzerName,
+            loadtext: "loading data......"
+        });
+        jQuery("#gridTable").jqGrid('navGrid', '#ptoolbar', { edit: false, add: false, del: false });
+        jQuery("#gridTable").jqGrid('inlineNav', '#ptoolbar', { edit: false, add: false, del: false });
+        jQuery("#gridTable").jqGrid('filterToolbar', { stringResult: true, searchOnEnter: false });
+    }
+
+</script>
+<div style="height: 90px; margin-top: -15px;">
+    <img alt="Entities" style="width: 55px; height: 75px; float: left" src="../../Content/images/Analyzer.png" />
+    <div style="width: 300px; float: left; margin-top: 30px; margin-left: 10px; font-size: 24px;
+        color: black;">@Resources.Resources.TitleAnalyzerData</div>
+</div>
+<table id="gridTable">
+</table>
+<div id="ptoolbar">
+</div>
+<div>
+    @Html.ActionLink(@Resources.Resources.ALinkBackAnalyzerList, "Index")
+</div>

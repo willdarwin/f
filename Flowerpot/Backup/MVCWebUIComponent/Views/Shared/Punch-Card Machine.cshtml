@@ -1,0 +1,118 @@
+﻿@model MVCWebUIComponent.Models.TabsModel
+@using MVCWebUIComponent.Models
+@*<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>*@
+<script type="text/javascript">
+    $(function () {
+        $("#tabs").tabs({
+            collapsible: true
+            //event: "mouseover"
+        });
+    });
+
+    $(function () {
+        var tabs = $("#tabs").tabs();
+        tabs.find(".ui-tabs-nav").sortable({
+            axis: "x",
+            stop: function () {
+                tabs.tabs("refresh");
+            }
+        });
+    });
+
+    $(function () {
+        var availableTags;
+        $.ajax({
+            type: "POST",
+            async: false,
+            contentType: "application/json;utf-8",
+            url: "GetAllCardId",
+            success: function (data) {
+                availableTags = data;
+            }
+        });
+        var availableTags =
+        $(".tags").autocomplete({
+            source: availableTags
+        });
+    });
+</script>
+<div id="tabs">
+    <ul>
+        @{
+            for (int i = 0; i < @Model.TabsGroups.Count; i++)
+            {
+            <li><a href="#tabs-@i">@Model.TabsGroups[i].Header</a></li>
+            }
+        }
+    </ul>
+    @{
+        for (int j = 0; j < @Model.TabsGroups.Count; j++)
+        {
+        <div id="tabs-@j">
+            <p>
+                @*@Model.TabsGroups[j].Body*@
+                @*<input type="text" onkeyup ="PunchCard(@j,value, value.length)" maxlength="6"> </input>*@
+                <label for="tags">
+                    Please input cardId:
+                </label>
+                <input class="tags" onPropertyChange ="PunchCard(@j,value, value.length)" oninput="PunchCard(@j,value, value.length)" maxlength="6"/>
+            </p>
+        </div>
+        }
+    }
+</div>
+<script type="text/javascript">
+    function PunchCard(tabId, value, length) {
+        //alert(value);
+        if (length == 6) {
+            if (tabId == 0) {
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    contentType: "application/json;utf-8",
+                    url: "InsertConsumptionRecord?cardId=" + value,
+                    success: function (data) {
+                        //alert(data);
+                        $("#tabs input").attr("value", "");
+                        if (data == "True") {
+                            alert("data insert successfully!");
+                            location.reload();
+                        }
+                        else if (data == "False") {
+                            alert("data insert failed!");
+                            location.reload();
+                        }
+                        else {
+                            alert("session timeout, please logon again!");
+                            window.location.href = "/Account/Logon?referURL=%2FApp";
+                        }
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    contentType: "application/json;utf-8",
+                    url: "UpdateConsumptionRecord?cardId=" + value,
+                    success: function (data) {
+                        $("#tabs input").attr("value", "");
+                        if (data == "True") {
+                            alert("data update successfully!");
+                            location.reload();
+                        }
+                        else if (data == "False") {
+                            alert("data update failed!");
+                            location.reload();
+                        }
+                        else {
+                            alert("session timeout, please logon again!");
+                            window.location.href = "/Account/Logon?referURL=%2FApp";
+                        }
+                    }
+                });
+            }
+        }
+    }
+</script>
